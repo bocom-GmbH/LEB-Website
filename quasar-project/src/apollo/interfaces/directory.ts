@@ -8,6 +8,14 @@ interface Idirectory {
     schemaOfChildren?: string[];
     client?: string;
     children?: Idirectory[];
+    type?: string;
+    schemaId?: string;
+    image?: string;
+    price?: number;
+    amount?: number;
+    url?: string;
+    linkFileId?: string;
+    relatedFiles?: object[];
 }
 
 interface ISaveDirectoryResponse {
@@ -16,7 +24,9 @@ interface ISaveDirectoryResponse {
     };
 }
 
-export type {
-	Idirectory,
-	ISaveDirectoryResponse
+interface IDirectoryNested {
+    id: string;
+    directory: Idirectory[];
 }
+
+export type { Idirectory, ISaveDirectoryResponse, IDirectoryNested };

@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 const getDirectoryFolderToLoggedInClient = gql`
     query getDirectoryFolderToLoggedInClient {
-        getDirectoryFolderToLoggedInClient {
+        getDirectoryFolderToLoggedInClient(frontEndType: "desktop") {
             flat {
                 id
                 directory {
@@ -17,7 +17,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                     fixedNumberOfChildren
                     schemaOfChildren
                     client
-					schemaId
+                    schemaId
+                    type
+                    image
+                    price
+                    amount
+                    url
+                    linkFileId
                 }
             }
             nested {
@@ -31,7 +37,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                     fixedNumberOfChildren
                     schemaOfChildren
                     client
-					schemaId
+                    schemaId
+                    type
+                    image
+                    price
+                    amount
+                    url
+                    linkFileId
                     children {
                         id
                         fileId
@@ -41,7 +53,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                         schemaOfChildren
                         fixedNumberOfChildren
                         client
-						schemaId
+                        schemaId
+                        type
+                        image
+                        price
+                        amount
+                        url
+                        linkFileId
                         children {
                             id
                             fileId
@@ -51,7 +69,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                             schemaOfChildren
                             fixedNumberOfChildren
                             client
-							schemaId
+                            schemaId
+                            type
+                            image
+                            price
+                            amount
+                            url
+                            linkFileId
                             children {
                                 id
                                 fileId
@@ -61,7 +85,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                                 schemaOfChildren
                                 fixedNumberOfChildren
                                 client
-								schemaId
+                                schemaId
+                                type
+                                image
+                                price
+                                amount
+                                url
+                                linkFileId
                                 children {
                                     id
                                     fileId
@@ -71,7 +101,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                                     schemaOfChildren
                                     fixedNumberOfChildren
                                     client
-									schemaId
+                                    schemaId
+                                    type
+                                    image
+                                    price
+                                    amount
+                                    url
+                                    linkFileId
                                     children {
                                         id
                                         fileId
@@ -81,7 +117,13 @@ const getDirectoryFolderToLoggedInClient = gql`
                                         schemaOfChildren
                                         fixedNumberOfChildren
                                         client
-										schemaId
+                                        schemaId
+                                        type
+                                        image
+                                        price
+                                        amount
+                                        url
+                                        linkFileId
                                     }
                                 }
                             }

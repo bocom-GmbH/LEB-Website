@@ -1,14 +1,18 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+    <q-layout view="hHh Lpr lff">
+        <NavigationBar />
+        <q-page-container>
+            <router-view />
+        </q-page-container>
+        <Footer style="position: fixed; bottom: 0" />
+    </q-layout>
 </template>
 
 <script setup lang="ts">
+import NavigationBar from 'src/components/NavigationBar.vue';
+import Footer from 'src/components/Footer.vue';
 
 defineOptions({
-  name: 'MainLayout'
+    name: 'MainLayout',
 });
 </script>

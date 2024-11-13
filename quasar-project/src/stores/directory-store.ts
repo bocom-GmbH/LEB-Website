@@ -5,7 +5,11 @@ import { defineStore } from 'pinia';
 import { useQuery } from '@vue/apollo-composable';
 import { useMutation } from '@vue/apollo-composable';
 import { saveDirectory } from 'src/apollo/mutations/directory';
-import { Idirectory, ISaveDirectoryResponse } from 'src/interfaces/directory';
+import {
+    Idirectory,
+    ISaveDirectoryResponse,
+    IDirectoryNested,
+} from 'src/apollo/interfaces/directory';
 import { getDirectoryFolderToLoggedInClient } from 'src/apollo/queries/directory';
 
 const saveFlatDirectoriesMutation = async (
@@ -64,9 +68,9 @@ const fetchDirectory = async (): Promise<{
 
 export const useDirectoryStore = defineStore('directory', {
     state: () => ({
-        remoteDirectoryFlat: [] as any[],
-        localDirectoryFlat: [] as any[],
-        directoryNested: [] as any[],
+        remoteDirectoryFlat: [] as Idirectory[],
+        localDirectoryFlat: [] as Idirectory[],
+        directoryNested: null as IDirectoryNested | null,
     }),
 
     getters: {
@@ -78,6 +82,54 @@ export const useDirectoryStore = defineStore('directory', {
         },
         getDirectoryNested(state): any[] {
             return state.directoryNested;
+        },
+        getNestedDirectoryItemById: (state) => {
+            return (id: string): Idirectory | undefined => {
+                if (
+                    !state.directoryNested ||
+                    typeof state.directoryNested !== 'object'
+                ) {
+                    console.warn(
+                        'directoryNested nem létezik vagy nem objektum',
+                        state.directoryNested
+                    );
+                    return undefined;
+                }
+
+                const directoryArray = (state.directoryNested as any).directory;
+                if (!Array.isArray(directoryArray)) {
+                    console.warn('directory nem tömb típusú', directoryArray);
+                    return undefined;
+                }
+
+                const findInNested = (
+                    items: Idirectory[]
+                ): Idirectory | undefined => {
+                    if (!Array.isArray(items)) {
+                        console.warn('A keresett items nem tömb típusú', items);
+                        return undefined;
+                    }
+
+                    for (const item of items) {
+                        if (item.id === id) {
+                            return item;
+                        }
+                        if (
+                            item.children &&
+                            Array.isArray(item.children) &&
+                            item.children.length > 0
+                        ) {
+                            const found = findInNested(item.children);
+                            if (found) {
+                                return found;
+                            }
+                        }
+                    }
+                    return undefined;
+                };
+
+                return findInNested(directoryArray);
+            };
         },
     },
 
@@ -102,11 +154,25 @@ export const useDirectoryStore = defineStore('directory', {
             }
         },
 
-		setVisibilityById(id: string, visibility: boolean): void {
-			const itemInDirectory = this.localDirectoryFlat.find((item) => item.id === id);
-			if (itemInDirectory) {
-				itemInDirectory.isVisible = visibility;
-			}
-		}
+        getDirectoryItemById(id: string): Idirectory | undefined {
+            // @ts-ignore
+            if (!Array.isArray(this.localDirectoryFlat.directory)) {
+                return undefined;
+            }
+            // @ts-ignore
+            return this.localDirectoryFlat.directory.find(
+                // @ts-ignore
+                (item) => item.id === id
+            );
+        },
+
+        setVisibilityById(id: string, visibility: boolean): void {
+            const itemInDirectory = this.localDirectoryFlat.find(
+                (item) => item.id === id
+            );
+            if (itemInDirectory) {
+                itemInDirectory.isVisible = visibility;
+            }
+        },
     },
 });

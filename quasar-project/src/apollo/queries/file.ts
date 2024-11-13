@@ -2,16 +2,18 @@
 // Description: Apollo queries for file data
 
 import gql from 'graphql-tag';
-
+// TODO: queryFileData makes a query by FileId, and not by id
+// name should be getFileById
 const getFileById = gql`
-	query queryFileData($id: String!) {
-		queryFileData(id: $id) {
-			id
-			label
-			data
-			schemaId
-		}
-	}
+    query queryFileData($id: String!) {
+        queryFileData(id: $id) {
+            id
+            label
+            data
+            schemaId
+            relatedFiles
+        }
+    }
 `;
 
 const getFilesByFileIds = gql`
@@ -25,7 +27,4 @@ const getFilesByFileIds = gql`
     }
 `;
 
-export {
-    getFileById,
-	getFilesByFileIds
-}
+export { getFileById, getFilesByFileIds };
