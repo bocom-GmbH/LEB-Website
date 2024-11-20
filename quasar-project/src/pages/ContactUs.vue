@@ -3,9 +3,7 @@
         <div class="content-container q-mx-auto">
             <div class="text-h3 text-center q-mb-xl">Kontakt</div>
 
-            <!-- Felső sor: Kapcsolati információk és Űrlap -->
             <div class="row q-col-gutter-xl justify-center q-mb-xl">
-                <!-- Bal oldal: Kapcsolati információk -->
                 <div class="col-12 col-md-6">
                     <q-card flat bordered class="contact-card">
                         <q-card-section>
@@ -99,7 +97,6 @@
                     </q-card>
                 </div>
 
-                <!-- Jobb oldal: Kapcsolati űrlap -->
                 <div class="col-12 col-md-6">
                     <q-card flat bordered class="contact-card">
                         <q-card-section>
@@ -149,7 +146,6 @@
                 </div>
             </div>
 
-            <!-- Alsó sor: Térkép középen -->
             <div class="row justify-center">
                 <div class="col-12 col-md-8">
                     <q-card flat bordered class="map-card">
@@ -162,7 +158,6 @@
                                 {{ contactUsFile?.data[1]?.data?.content }}
                             </div>
 
-                            <!-- Google Maps iframe -->
                             <div class="map-container">
                                 <iframe
                                     width="100%"
@@ -223,8 +218,7 @@ const onSubmit = () => {
 
 const getEmbedUrl = (mapUrl: string) => {
     if (!mapUrl) return '';
-    // Példa URL: https://www.google.com/maps/place/Lebenskreis+Apotheke/@47.192576,14.74437,15z/...
-    // Átalakítjuk embed URL-lé
+    console.log(mapUrl);
     return mapUrl.replace(
         '/maps/place/',
         '/maps/embed/v1/place?key=YOUR_API_KEY&q='
@@ -256,7 +250,6 @@ const getEmbedUrl = (mapUrl: string) => {
     }
 }
 
-// Egyforma magasságú kártyák
 .q-card {
     display: flex;
     flex-direction: column;

@@ -6,7 +6,9 @@
             width="100%"
             height="300px"
         >
-            <div class="absolute-bottom text-subtitle1 text-center bg-primary">
+            <div
+                class="absolute-bottom no-letter-spacing text-h6 text-center bg-primary"
+            >
                 {{ item.name }}
             </div>
         </q-img>
@@ -21,3 +23,10 @@ const props = defineProps({
     },
 });
 </script>
+
+<style lang="scss" scoped>
+.no-letter-spacing {
+    letter-spacing: 0;
+    line-height: 1.7rem;
+}
+</style>

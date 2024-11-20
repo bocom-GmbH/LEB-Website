@@ -143,6 +143,7 @@ export const useDirectoryStore = defineStore('directory', {
         async fetchDirectory(): Promise<void> {
             const result = await fetchDirectory();
             if (result) {
+                console.log(result);
                 this.remoteDirectoryFlat = [];
                 this.directoryNested = [];
                 this.localDirectoryFlat = [];

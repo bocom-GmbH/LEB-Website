@@ -5,6 +5,12 @@ const routes: RouteRecordRaw[] = [
         path: '/',
         component: () => import('layouts/MainLayout.vue'),
         children: [
+            {
+                path: ':directoryId/story/:storyId',
+                name: 'story',
+                component: () => import('pages/StoryPage.vue'),
+                props: true,
+            },
             { path: '', component: () => import('pages/IndexPage.vue') },
             {
                 path: 'kontakt/:fileId',
@@ -21,10 +27,6 @@ const routes: RouteRecordRaw[] = [
             {
                 path: ':directoryId/product/:productId',
                 component: () => import('pages/ProductPage.vue'),
-            },
-            {
-                path: ':directoryId/story/:storyId',
-                component: () => import('pages/StoryPage.vue'),
             },
             {
                 path: 'impressum',

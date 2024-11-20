@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="inner-container">
+        <div class="q-mt-xl inner-container">
             <div class="info-container flex flex-center items-center">
                 <q-img
                     :src="
@@ -76,11 +76,14 @@
             </div>
         </div>
     </div>
-    <div class="w-full text-center">
+    <!-- <div class="w-full text-center">
         <h3>Interessante Produkte</h3>
-    </div>
-
-    {{ productFile }}
+    </div> -->
+    <GridComponent
+        style="margin-top: 96px"
+        :relatedFiles="productFile?.relatedFiles"
+        :label="'Interessante Beiträge'"
+    />
 </template>
 
 <script setup lang="ts">
@@ -88,6 +91,7 @@ import { useRoute } from 'vue-router';
 import { useDirectoryStore } from '../stores/directory-store';
 import { computed, watch, ref } from 'vue';
 import { useFileStore } from '../stores/file-store';
+import GridComponent from '../components/GridComponent.vue';
 
 const route = useRoute();
 const store = useDirectoryStore();

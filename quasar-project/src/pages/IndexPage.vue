@@ -6,16 +6,20 @@
             alt=""
             style="max-height: 1273px"
         />
-        {{ homeFile }}
-        <div class="grid-conteiner row q-col-gutter-md">
-            <div
+        <!-- {{ homeFile }} -->
+        <!--  <div class="grid-conteiner row q-col-gutter-md"> -->
+        <!--  <div
                 v-for="relatedFile in homeFile?.relatedFiles"
                 :key="relatedFile.id"
                 class="col-12 col-sm-6 col-md-3"
-            >
-                asd
-                {{ relatedFile }}
-                <component
+            > -->
+        <grid-component
+            v-if="homeFile?.relatedFiles.length"
+            :relatedFiles="homeFile?.relatedFiles"
+            style="margin-bottom: 200px"
+            :label="''"
+        />
+        <!--    <component
                     v-if="
                         componentStore.getComponentById(relatedFile.type ?? '')
                     "
@@ -31,20 +35,21 @@
                         price: relatedFile.price,
                     }"
                     @click="navigateTo(relatedFile)"
-                />
-            </div>
-        </div>
+                />-->
+        <!-- </div> -->
+        <!-- </div> -->
     </q-page>
 </template>
 
 <script setup lang="ts">
 import { useFileStore } from 'src/stores/file-store';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, provide } from 'vue';
 import { useDirectoryStore } from 'src/stores/directory-store';
 import { useComponentStore } from 'src/stores/component-hub';
 import ProductPreview from 'components/ProductPreview.vue';
 import StoryPreview from 'components/StoryPreview.vue';
 import { useRouter } from 'vue-router';
+import GridComponent from 'src/components/GridComponent.vue';
 
 const router = useRouter();
 const directoryStore = useDirectoryStore();
@@ -68,14 +73,9 @@ watch(
         const file = newValue.directory[0].children.find(
             (item: any) => item.url === '/'
         );
-        homeFile.value = await fileStore.getFileById(file.linkFileId);
+        homeFile.value = await fileStore.getFileById(file?.linkFileId);
     }
 );
-
-const navigateTo = (item: any) => {
-    const path = `/${item.id}/${item.type}/${item.fileId}`;
-    router.push({ path });
-};
 
 defineOptions({
     name: 'IndexPage',

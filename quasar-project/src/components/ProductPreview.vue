@@ -9,7 +9,7 @@
         </q-img>
 
         <q-card-section class="bg-primary">
-            <div class="text-h6">{{ item.name }}</div>
+            <div class="no-letter-spacing text-h6">{{ item.name }}</div>
             <div class="row justify-between">
                 <div class="text-subtitle2">{{ item.amount }}</div>
                 <div class="text-subtitle">{{ item.price }} EUR</div>
@@ -26,3 +26,10 @@ const props = defineProps({
     },
 });
 </script>
+
+<style lang="scss" scoped>
+.no-letter-spacing {
+    letter-spacing: 0;
+    line-height: 1.7rem;
+}
+</style>

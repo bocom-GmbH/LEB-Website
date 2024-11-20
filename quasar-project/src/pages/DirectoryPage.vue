@@ -1,6 +1,6 @@
 <template>
-    <div class="text-h4 w-full text-center q-mt-lg">
-        {{ directoryItem?.name }} aaa
+    <div class="text-h3 w-full text-center q-mt-lg">
+        {{ directoryItem?.name }}
     </div>
     <br />
     <div class="content-wrapper q-px-md">
@@ -10,7 +10,6 @@
                 :key="item.id"
                 class="col-12 col-sm-6 col-md-3"
             >
-                {{ item }}
                 <component
                     v-if="componentStore.getComponentById(item.type ?? '')"
                     :is="componentStore.getComponentById(item.type ?? '')"
@@ -43,6 +42,8 @@ const directoryItem = computed(() =>
 
 const navigateTo = (item: any) => {
     const path = `/${directoryId.value}/${item.type}/${item.fileId}`;
+    console.log(path);
+
     router.push({ path });
 };
 </script>

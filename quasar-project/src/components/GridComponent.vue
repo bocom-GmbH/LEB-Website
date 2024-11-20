@@ -1,30 +1,13 @@
 <template>
     <div class="grid-container q-mt-xl">
-        <div class="text-h5 text-center q-mb-lg">Interessante Beiträge</div>
+        <div class="text-h4 text-center q-mb-lg">{{ label }}</div>
         <div class="row q-col-gutter-md justify-center">
             <div
-                v-for="story in stories"
-                :key="story.id"
+                v-for="(file, index) in relatedFiles"
+                :key="index"
                 class="col-12 col-sm-6 col-md-3"
             >
-                <q-card
-                    class="grid-item cursor-pointer"
-                    @click="navigateToStory(story.id)"
-                    flat
-                >
-                    <q-img
-                        :src="`https://images.db-bocom.at/${story.image}`"
-                        :ratio="1"
-                        spinner-color="primary"
-                        spinner-size="82px"
-                    >
-                        <div
-                            class="absolute-bottom text-subtitle1 text-center bg-primary"
-                        >
-                            {{ story.name }}
-                        </div>
-                    </q-img>
-                </q-card>
+                <component :is="getComponentType(file.type)" :file="file" />
             </div>
         </div>
     </div>
@@ -33,37 +16,24 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 
+import StoryCard from './relatedComponents/StoryCard.vue';
+import ProductCard from './relatedComponents/ProductCard.vue';
+
 const router = useRouter();
 
-const stories = [
-    {
-        id: '1',
-        name: 'Abnehmen mit System',
-        image: 'TbMb5T8aBrRi9sAFz.png',
-        type: 'story',
-    },
-    {
-        id: '2',
-        name: 'Detox-Leber',
-        image: 'feSHvhfqJwSE3yxxF.png',
-        type: 'story',
-    },
-    {
-        id: '3',
-        name: 'Natürlich frühlingsfrisch',
-        image: 'DwCFkHp6DuoSv7QJZ.png',
-        type: 'story',
-    },
-    {
-        id: '4',
-        name: 'Detox & Beauty',
-        image: '5eypWWgqffXLGK5Ft.jpg',
-        type: 'story',
-    },
-];
+const props = defineProps<{
+    relatedFiles: {
+        id: string;
+        name: string;
+        image: string;
+        type: string;
+    }[];
+    label: string;
+}>();
 
-const navigateToStory = (id: string) => {
-    router.push(`/story/${id}`);
+const getComponentType = (type: string) => {
+    if (type === 'story') return StoryCard;
+    if (type === 'product') return ProductCard;
 };
 </script>
 

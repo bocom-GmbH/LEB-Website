@@ -1,16 +1,17 @@
 <template>
     <div class="story-container">
         <q-img
-            v-if="storyDirectoryItem?.image"
-            :src="`https://images.db-bocom.at/${storyDirectoryItem.image}`"
+            v-if="storyFile"
+            :src="`https://images.db-bocom.at/${getContentById(
+                ELEMENT_IDS.IMAGE
+            )}`"
             height="400px"
             class="full-width"
         >
         </q-img>
-
         <div class="q-pa-md q-mx-auto content-container">
             <div class="text-h3 text-center q-my-lg">
-                {{ storyDirectoryItem?.name }}
+                {{ storyFile?.label }}
             </div>
 
             <template v-if="storyFile?.data">
@@ -44,7 +45,12 @@
             </template>
         </div>
 
-        <grid-component style="margin-bottom: 200px" />
+        <grid-component
+            v-if="storyFile?.relatedFiles.length"
+            :relatedFiles="storyFile?.relatedFiles"
+            style="margin-bottom: 200px"
+            :label="'Interessante Beiträge'"
+        />
     </div>
 </template>
 
@@ -72,6 +78,28 @@ const getDataOfFile = async (fileId: string) => {
     const file = await fileStore.getFileById(fileId);
     storyFile.value = file;
     return file;
+};
+
+interface StoryData {
+    content: string;
+}
+interface StoryElement {
+    data: StoryData;
+    elementId: string;
+}
+
+const ELEMENT_IDS = {
+    IMAGE: '56f5bbc4-8638-4231-a790-8aab57f81304',
+};
+
+const getContentById = (elementId: string): string => {
+    if (!storyFile.value?.data) return '';
+
+    const element = (storyFile.value.data as StoryElement[]).find(
+        (item) => item.elementId === elementId
+    );
+
+    return element?.data.content || '';
 };
 
 /* const isImageContent = (content: string): boolean => {

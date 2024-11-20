@@ -31,16 +31,7 @@
                                 <div
                                     class="q-py-md q-px-lg bg-secondary text-white"
                                 >
-                                    <div>Montag</div>
-                                    <div>08:00 - 18:00</div>
-                                    <div>Dienstag</div>
-                                    <div>08:00 - 18:00</div>
-                                    <div>Mittwoch</div>
-                                    <div>08:00 - 18:00</div>
-                                    <div>Donnerstag</div>
-                                    <div>08:00 - 18:00</div>
-                                    <div>Freitag</div>
-                                    <div>08:00 - 18:00</div>
+                                    {{ openingHours }}
                                 </div>
                             </q-menu>
                         </q-btn>
@@ -52,13 +43,32 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useFileStore } from 'src/stores/file-store';
+
+const fileStore = useFileStore();
 const router = useRouter();
 
 const navigateTo = (path: string) => {
     router.push(path);
 };
+
+const openingHours = ref<any>();
+
+onMounted(() => {
+    fileStore
+        .getFileById('b6f6f64d-5847-46f2-ae7c-c07a24cce7fd')
+        .then((fileData) => {
+            openingHours.value =
+                fileData.relatedFiles[0]?.openingTimes || 'N/A';
+            console.log('Updated openingHours:', openingHours.value);
+        });
+});
+
+watch(openingHours, (newValue) => {
+    console.log(newValue);
+});
 
 defineComponent({
     name: 'Footer',
