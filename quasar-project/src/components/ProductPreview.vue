@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card" flat>
+    <q-card class="my-card cursor-pointer" flat>
         <q-img
             :src="'https://images.db-bocom.at/' + item.image"
             fit="scale-down"

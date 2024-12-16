@@ -13,6 +13,8 @@
             <div class="text-h3 text-center q-my-lg">
                 {{ storyFile?.label }}
             </div>
+            <!-- <button @click="toggler = !toggler">Open the lightbox.</button>
+            <FsLightbox :toggler="toggler" :sources="sources" /> -->
 
             <template v-if="storyFile?.data">
                 <div
@@ -60,16 +62,26 @@ import { useDirectoryStore } from '../stores/directory-store';
 import { useFileStore } from '../stores/file-store';
 import { computed, watch, ref } from 'vue';
 import GridComponent from 'components/GridComponent.vue';
+//@ts-ignore
+import FsLightbox from 'fslightbox-vue/v3';
 
 const route = useRoute();
 const store = useDirectoryStore();
 const fileStore = useFileStore();
 
-const storyId = route.params.storyId as string;
-const directoryId = route.params.directoryId as string;
+const toggler = ref(false);
+const sources = ref([
+    '/Images/Example.jpg',
+    'https://i.imgur.com/fsyrScY.jpg',
+    'https://www.youtube.com/watch?v=3nQNiWdeH2Q',
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+]);
+
+const storyId = computed(() => route.params.storyId as string);
+const directoryId = computed(() => route.params.directoryId as string);
 
 const storyDirectoryItem = computed(() =>
-    store.getNestedDirectoryItemById(directoryId)
+    store.getNestedDirectoryItemById(directoryId.value)
 );
 
 const storyFile = ref<any>(null);
@@ -111,13 +123,22 @@ const getContentById = (elementId: string): string => {
 }; */
 
 watch(
-    () => storyDirectoryItem.value?.fileId,
-    async (newFileId) => {
-        if (newFileId) {
-            await getDataOfFile(storyId);
+    () => route.params,
+    async (newParams) => {
+        if (newParams.storyId) {
+            await getDataOfFile(newParams.storyId as string);
         }
     },
     { immediate: true }
+);
+
+watch(
+    () => storyDirectoryItem.value?.fileId,
+    async (newFileId) => {
+        if (newFileId) {
+            await getDataOfFile(storyId.value);
+        }
+    }
 );
 </script>
 
