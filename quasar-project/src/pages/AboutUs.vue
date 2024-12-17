@@ -15,7 +15,6 @@
                     v-for="member in aboutUsFile?.relatedFiles"
                     :key="member.first_name + member.last_name"
                     flat
-                    bordered
                     class="team-card q-mb-lg"
                 >
                     <div class="row no-wrap">
@@ -38,11 +37,11 @@
                                     {{ member.post_nominal_title }}
                                 </div>
                                 <q-space />
-                                <div v-if="member.role" class="text-caption">
-                                    {{ member.role }}
-                                </div>
                             </div>
 
+                            <div v-if="member.role" class="">
+                                {{ member.role }}
+                            </div>
                             <q-separator class="q-my-sm" />
 
                             <div class="text-body2">

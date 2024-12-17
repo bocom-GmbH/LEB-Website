@@ -21,7 +21,7 @@
                 v-for="menuItem in newMenuItems"
                 :key="menuItem.to"
                 flat
-                class="text-secondary q-my-md"
+                class="text-secondary q-my-md custom-btn-text"
                 :label="menuItem.name"
                 @click="
                     () => {
@@ -97,7 +97,7 @@
                     :key="index"
                     :label="menuItem.name"
                     default-opened
-                    class="text-black cursor-pointer"
+                    class="text-black cursor-pointer custom-btn-text"
                     expand-icon="none"
                     @click="handleMobileItemClick(menuItem)"
                 >
@@ -197,5 +197,18 @@ const handleMobileItemClick = (item: any) => {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+.custom-btn-text {
+    font-size: 1.1rem;
+}
+
+:deep(.q-btn__content) {
+    font-size: 1.1rem;
+}
+
+:deep(.q-expansion-item__toggle-icon),
+:deep(.q-item__label) {
+    font-size: 1.1rem;
 }
 </style>
