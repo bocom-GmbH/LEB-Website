@@ -135,6 +135,7 @@ watch(
         font-size: 1.5rem;
         font-weight: 500;
         margin: 2rem 0 1rem 0;
+        line-height: 2.2rem;
     }
 
     p {
