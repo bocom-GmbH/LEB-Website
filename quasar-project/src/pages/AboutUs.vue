@@ -80,14 +80,6 @@ onMounted(async () => {
     max-width: 1000px;
 }
 
-.team-card {
-    transition: transform 0.2s ease;
-
-    &:hover {
-        transform: translateY(-4px);
-    }
-}
-
 // Reszponzív beállítások
 @media (max-width: 599px) {
     .team-card {

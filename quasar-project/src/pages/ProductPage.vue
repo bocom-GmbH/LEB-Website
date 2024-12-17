@@ -15,14 +15,14 @@
             <!-- {{ productFile }} -->
             <div class="info-container q-pa-md bg-primary">
                 <div class="text-h4">{{ productFile?.label }}</div>
-                <!-- <div>
-                    <p>{{ getContentById(ELEMENT_IDS.NOTICE) }}</p>
-                </div> -->
+                <div v-if="getContentById(ELEMENT_IDS.DESCRIPTION)">
+                    <p>{{ getContentById(ELEMENT_IDS.DESCRIPTION) }}</p>
+                </div>
                 <div class="q-mt-md">
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
                 </div>
-                <div>
-                    <p>{{ getContentById(ELEMENT_IDS.PRICE) }} €</p>
+                <div class="text-h4">
+                    {{ getContentById(ELEMENT_IDS.PRICE) }} €
                 </div>
                 <q-list class="q-mt-md">
                     <q-expansion-item
@@ -110,6 +110,7 @@ const getDataOfFile = async (fileId: string) => {
     isLoading.value = true;
     try {
         const file = await fileStore.getFileById(fileId);
+        console.log(file);
         productFile.value = file;
         return file;
     } finally {
@@ -155,6 +156,7 @@ const ELEMENT_IDS = {
     NOTICE: '5fe6d87c-4ec2-4954-91cb-4a883fa3d662',
     MANUFACTURER: '75e01196-ca8c-4f07-948f-73f1b8573bb3',
     IMAGE: '56f5bbc4-8638-4231-a790-8aab57f81304',
+    DESCRIPTION: '3917b97c-d37c-43fc-9a18-c11fa708a86d',
 } as const;
 
 const getContentById = (elementId: string): string => {

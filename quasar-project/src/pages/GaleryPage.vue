@@ -27,11 +27,18 @@
                             spinner-size="82px"
                         >
                             <div
-                                class="absolute-bottom text-subtitle1 text-center bg-dark-dimmed"
+                                class="absolute-bottom no-letter-spacing text-h6 text-center bg-primary"
                             >
                                 {{ folder.title }}
-                                <div class="text-caption">
-                                    {{ folder.images.length }} Bilder
+                                <div
+                                    class="no-letter-spacing text-h6 text-center bg-primary"
+                                >
+                                    <div v-if="folder.images.length > 1">
+                                        {{ folder.images.length }} Bilder
+                                    </div>
+                                    <div v-else>
+                                        {{ folder.images.length }} Bild
+                                    </div>
                                 </div>
                             </div>
                         </q-img>

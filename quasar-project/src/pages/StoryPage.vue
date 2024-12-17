@@ -34,7 +34,7 @@
                     >
                         {{ element.data.content }}
                     </div>
-
+                    <!-- <q-img width="50px" :src="'leaf.svg'" /> -->
                     <div
                         v-if="
                             element.data.content &&
@@ -152,6 +152,8 @@ watch(
 }
 
 :deep(.story-content) {
+    text-align: justify;
+
     h3 {
         font-size: 1.5rem;
         font-weight: 500;
@@ -162,6 +164,22 @@ watch(
     p {
         line-height: 1.6;
         margin: 1rem 0;
+        position: relative;
+
+        &:first-of-type {
+            &::before {
+                content: '';
+                display: block;
+                float: left;
+                width: 50px;
+                height: 50px;
+                margin-right: 10px;
+                background-image: url('/leaf.svg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
     }
 }
 </style>
