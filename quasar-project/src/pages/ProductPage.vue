@@ -12,11 +12,12 @@
                     fit="scale-down"
                 />
             </div>
+            <!-- {{ productFile }} -->
             <div class="info-container q-pa-md bg-primary">
                 <div class="text-h4">{{ productFile?.label }}</div>
-                <div>
+                <!-- <div>
                     <p>{{ getContentById(ELEMENT_IDS.NOTICE) }}</p>
-                </div>
+                </div> -->
                 <div class="q-mt-md">
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
                 </div>
@@ -26,7 +27,6 @@
                 <q-list class="q-mt-md">
                     <q-expansion-item
                         expand-separator
-                        icon="perm_identity"
                         label="Inhalt"
                         :header-style="{
                             fontSize: '18px',
@@ -45,7 +45,6 @@
 
                     <q-expansion-item
                         expand-separator
-                        icon="signal_wifi_off"
                         label="Anwendung"
                         :header-style="{
                             fontSize: '18px',
@@ -60,7 +59,6 @@
 
                     <q-expansion-item
                         expand-separator
-                        icon="drafts"
                         label="Hinweise"
                         :header-style="{
                             fontSize: '18px',
@@ -97,11 +95,12 @@ const route = useRoute();
 const store = useDirectoryStore();
 const fileStore = useFileStore();
 
-const productId = route.params.productId as string;
-const directoryId = route.params.directoryId as string;
+// Computed properties a route paraméterekhez
+const productId = computed(() => route.params.productId as string);
+const directoryId = computed(() => route.params.directoryId as string);
 
 const productDirectoryItem = computed(() =>
-    store.getNestedDirectoryItemById(directoryId)
+    store.getNestedDirectoryItemById(directoryId.value)
 );
 const productFile = ref(null);
 
@@ -118,14 +117,25 @@ const getDataOfFile = async (fileId: string) => {
     }
 };
 
+// Route változás figyelése
+watch(
+    () => route.params,
+    async (newParams) => {
+        if (newParams.productId) {
+            await getDataOfFile(newParams.productId as string);
+        }
+    },
+    { immediate: true }
+);
+
+// Eredeti watch megtartása is a directory változásokhoz
 watch(
     () => productDirectoryItem.value?.fileId,
     async (newFileId) => {
         if (newFileId) {
-            await getDataOfFile(productId);
+            await getDataOfFile(productId.value);
         }
-    },
-    { immediate: true }
+    }
 );
 
 interface ProductData {
@@ -169,6 +179,42 @@ const productDataMap = computed(() => {
         }),
         {} as Record<string, string>
     );
+});
+
+// Computed properties a tabok láthatóságához
+const hasHinweis = computed(() => {
+    const content = getContentById(ELEMENT_IDS.HINWEIS);
+    return content && content.trim() !== '';
+});
+
+const hasAnwendung = computed(() => {
+    const content = getContentById(ELEMENT_IDS.ANWENDUNG);
+    return content && content.trim() !== '';
+});
+
+const hasInhaltsstoffe = computed(() => {
+    const content = getContentById(ELEMENT_IDS.INHALTSSTOFFE);
+    return content && content.trim() !== '';
+});
+
+const hasAnyTabContent = computed(
+    () => hasHinweis.value || hasAnwendung.value || hasInhaltsstoffe.value
+);
+
+// Ha nincs tartalom az aktív tabban, válasszuk az első elérhető tabot
+watch([hasHinweis, hasAnwendung, hasInhaltsstoffe], () => {
+    if (!hasHinweis.value && tab.value === 'hinweis') {
+        if (hasAnwendung.value) tab.value = 'anwendung';
+        else if (hasInhaltsstoffe.value) tab.value = 'inhaltsstoffe';
+    }
+    if (!hasAnwendung.value && tab.value === 'anwendung') {
+        if (hasHinweis.value) tab.value = 'hinweis';
+        else if (hasInhaltsstoffe.value) tab.value = 'inhaltsstoffe';
+    }
+    if (!hasInhaltsstoffe.value && tab.value === 'inhaltsstoffe') {
+        if (hasHinweis.value) tab.value = 'hinweis';
+        else if (hasAnwendung.value) tab.value = 'anwendung';
+    }
 });
 </script>
 

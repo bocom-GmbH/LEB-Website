@@ -97,15 +97,19 @@
                     :key="index"
                     :label="menuItem.name"
                     default-opened
-                    class="text-black"
+                    class="text-black cursor-pointer"
                     expand-icon="none"
+                    @click="handleMobileItemClick(menuItem)"
                 >
                     <q-expansion-item
                         v-for="child in menuItem.children"
+                        :key="child.id"
                         :header-inset-level="1"
                         :label="child.name"
                         default-opened
                         expand-icon="none"
+                        @click.stop="handleMobileItemClick(child)"
+                        class="cursor-pointer"
                     >
                     </q-expansion-item>
                 </q-expansion-item>
@@ -172,6 +176,17 @@ watch(
     },
     { immediate: true }
 );
+
+const handleMobileItemClick = (item: any) => {
+    if (item.url === '/') {
+        router.push('/');
+    } else if (item.url) {
+        router.push(`${item.url}/${item.linkFileId}`);
+    } else {
+        router.push(`/${item.id}`);
+    }
+    drawer.value = false;
+};
 </script>
 
 <style lang="scss" scoped>
