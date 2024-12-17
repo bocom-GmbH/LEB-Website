@@ -11,6 +11,13 @@
                 src="/public/logo.png"
                 alt=""
             />
+            <q-img
+                v-else
+                class="logo_small cursor-pointer"
+                src="/public/logo_small.png"
+                alt=""
+                @click="router.push('/')"
+            />
         </Transition>
 
         <div
@@ -210,5 +217,12 @@ const handleMobileItemClick = (item: any) => {
 :deep(.q-expansion-item__toggle-icon),
 :deep(.q-item__label) {
     font-size: 1.1rem;
+}
+
+.logo_small {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 10px;
 }
 </style>

@@ -13,10 +13,10 @@
                 :key="relatedFile.id"
                 class="col-12 col-sm-6 col-md-3"
             > -->
-        <grid-component
+        <grid-2
             v-if="homeFile?.relatedFiles.length"
             :relatedFiles="homeFile?.relatedFiles"
-            style="margin-bottom: 200px"
+            style="margin-bottom: 200px; margin-top: 50px"
             :label="''"
         />
         <!--    <component
@@ -49,7 +49,7 @@ import { useComponentStore } from 'src/stores/component-hub';
 import ProductPreview from 'components/ProductPreview.vue';
 import StoryPreview from 'components/StoryPreview.vue';
 import { useRouter } from 'vue-router';
-import GridComponent from 'src/components/GridComponent.vue';
+import Grid2 from 'src/components/Grid2.vue';
 
 const router = useRouter();
 const directoryStore = useDirectoryStore();
