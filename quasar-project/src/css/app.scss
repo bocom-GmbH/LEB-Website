@@ -37,6 +37,20 @@
     font-stretch: condensed;
 }
 
+@font-face {
+    font-family: 'Aniuk';
+    src: url('/src/css/fonts/Aniuk\ Bold.woff2')
+        format('woff');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Aniuk';
+    src: url('/src/css/fonts/Aniuk\ Regular.woff2')
+        format('woff');
+    font-weight: 400;
+}
+
 // declare a class which applies it
 body {
     font-family: 'Proxima Nova';
@@ -51,6 +65,11 @@ h1 {
 .text-h1 {
     font-family: 'Proxima Nova', sans-serif;
     font-weight: 500; /* Medium weight */
+}
+
+.text-subtitle1 {
+    font-family: 'Aniuk', sans-serif;
+    font-weight: 400; /* Regular weight */
 }
 
 p.light-text {
