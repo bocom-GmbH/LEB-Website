@@ -22,9 +22,9 @@
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
                 </div> -->
                 <div class="text-h5 price_and_quantity">
-                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
+                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span>Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
                 </div>
-                <!-- <q-list class="q-mt-md"> -->
+                <q-list class="q-mt-md">
                     <q-expansion-item
                         expand-separator
                         label="Inhalt"
@@ -73,7 +73,7 @@
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
-                <!-- </q-list> -->
+                </q-list>
             </q-card>
         </div>
     </div>
