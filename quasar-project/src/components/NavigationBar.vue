@@ -5,22 +5,37 @@
         :style="{ height: headerHeight, transition: 'height 0.5s ease' }"
     >
         <Transition name="fade">
-            <q-img
-                v-if="!isScrolled && route.path === '/'"
-                width="150px"
-                src="/public/logo.png"
-                alt=""
-            />
+            <div v-if="isSmallScreen">
+                <q-img
+                    v-if="!isScrolled && route.path === '/'"
+                    width="150px"
+                    src="/public/logo.png"
+                    alt=""
+                />
+                <q-imgs
+                    v-else
+                    class="logo_small cursor-pointer"
+                    src="/public/logo_small.png"
+                    alt=""
+                    @click="router.push('/')"
+                />
+            </div>
+            <div v-else>
+                <q-img
+                    v-if="!isScrolled"
+                    width="150px"
+                    src="/public/logo.png"
+                    alt=""
+                />
+                <q-imgs
+                    v-else
+                    class="logo_small cursor-pointer"
+                    src="/public/logo_small.png"
+                    alt=""
+                    @click="router.push('/')"
+                />
+            </div>
         </Transition>
-
-        <q-img
-            v-if="isScrolled || route.path !== '/'"
-            class="logo_small cursor-pointer"
-            src="/public/logo_small.png"
-            alt=""
-            @click="router.push('/')"
-        />
-
         <div
             v-if="!isSmallScreen"
             class="flex flex-row items-center align-center"
@@ -165,7 +180,7 @@ const router = useRouter();
 const route = useRoute();
 const isSmallScreen = computed(() => $q.screen.lt.md);
 const isMobile = $q.platform.is.mobile;
-const headerHeight = ref('230px');
+const headerHeight = ref(isSmallScreen.value ? '70px' : '230px');
 const directoryStore = useDirectoryStore();
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
@@ -186,7 +201,7 @@ const isScrolled = ref(false);
 
 function handleScroll() {
     isScrolled.value = window.scrollY > 0;
-    if (route.path !== '/') {
+    if (route.path !== '/' && isSmallScreen.value) {
         headerHeight.value = '70px';
     } else {
         headerHeight.value = scrollY > 0 ? '70px' : '230px';
