@@ -13,24 +13,25 @@
                 />
             </div>
             <!-- {{ productFile }} -->
-            <div class="info-container q-pa-md bg-primary">
+            <q-card class="info-container q-pa-md bg-primary">
                 <div class="text-h4">{{ productFile?.label }}</div>
                 <div v-if="getContentById(ELEMENT_IDS.DESCRIPTION)">
                     <p>{{ getContentById(ELEMENT_IDS.DESCRIPTION) }}</p>
                 </div>
-                <div class="q-mt-md">
+                <!-- <div class="q-mt-md">
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
+                </div> -->
+                <div class="text-h5 price_and_quantity">
+                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
                 </div>
-                <div class="text-h4">
-                    {{ getContentById(ELEMENT_IDS.PRICE) }} €
-                </div>
-                <q-list class="q-mt-md">
+                <!-- <q-list class="q-mt-md"> -->
                     <q-expansion-item
                         expand-separator
                         label="Inhalt"
                         :header-style="{
                             fontSize: '18px',
                         }"
+                        dense
                     >
                         <q-card class="bg-primary">
                             <q-card-section>
@@ -49,6 +50,7 @@
                         :header-style="{
                             fontSize: '18px',
                         }"
+                        dense
                     >
                         <q-card class="bg-primary">
                             <q-card-section>
@@ -63,6 +65,7 @@
                         :header-style="{
                             fontSize: '18px',
                         }"
+                        dense
                     >
                         <q-card class="bg-primary">
                             <q-card-section>
@@ -70,8 +73,8 @@
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
-                </q-list>
-            </div>
+                <!-- </q-list> -->
+            </q-card>
         </div>
     </div>
     <!-- <div class="w-full text-center">
@@ -234,6 +237,11 @@ p {
     max-width: 600px;
 }
 
+.price_and_quantity {
+    display: flex;
+    justify-content: space-between;
+}
+
 .inner-container {
     max-width: 1024px;
     padding: 16px;
@@ -248,5 +256,13 @@ p {
         flex-direction: column; /* Stack boxes vertically on medium or smaller screens */
         align-items: center;
     }
+}
+
+:deep(.q-item) {
+    padding: 0;
+}
+
+:deep(.q-expansion-item .q-item) {
+    padding: 0;
 }
 </style>
