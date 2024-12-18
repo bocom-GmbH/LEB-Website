@@ -14,10 +14,10 @@
                             class="text-white"
                         />
                     </div>
-                    <div>© Lebenskreis Apotheke 2024</div>
+                    <div v-if="!isSmallScreen">© Lebenskreis Apotheke 2024</div>
                 </div>
                 <div class="flex flex-row">
-                    <div>
+                    <div v-if="!isSmallScreen">
                         <q-btn
                             @click="navigateTo('/contact-us')"
                             flat
@@ -30,8 +30,7 @@
                             <q-menu>
                                 <div
                                     class="q-py-md q-px-lg bg-secondary text-white"
-                                >
-                                    {{ openingHours }}
+                                    v-html="openingHours">
                                 </div>
                             </q-menu>
                         </q-btn>
@@ -43,12 +42,16 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useFileStore } from 'src/stores/file-store';
+import { useQuasar } from 'quasar';
 
 const fileStore = useFileStore();
 const router = useRouter();
+
+const $q = useQuasar();
+const isSmallScreen = computed(() => $q.screen.lt.md);
 
 const navigateTo = (path: string) => {
     router.push(path);
