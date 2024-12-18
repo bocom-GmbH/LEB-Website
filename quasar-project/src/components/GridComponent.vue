@@ -7,7 +7,7 @@
                 <div
                     v-for="(file, index) in limitedStories"
                     :key="index"
-                    class="col-12 col-sm-6 col-md-3"
+                    class="col-6 col-md-3"
                 >
                     <StoryCard :file="file" />
                 </div>
@@ -21,7 +21,7 @@
                 <div
                     v-for="(file, index) in limitedProducts"
                     :key="index"
-                    class="col-12 col-sm-6 col-md-3"
+                    class="col-6 col-md-3"
                 >
                     <ProductCard :file="file" />
                 </div>
@@ -56,7 +56,6 @@ const props = defineProps<{
 //     () => props.relatedFiles?.filter((file) => file.type === 'product') || []
 // );
 
-
 // Utility function to limit and randomize items
 const getRandomizedItems = (items: RelatedFile[], maxItems: number) => {
     if (items.length <= maxItems) return items; // Return all if less than maxItems
@@ -70,7 +69,10 @@ const getRandomizedItems = (items: RelatedFile[], maxItems: number) => {
     // Shuffle items using Fisher-Yates algorithm
     for (let i = weightedItems.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [weightedItems[i], weightedItems[j]] = [weightedItems[j], weightedItems[i]];
+        [weightedItems[i], weightedItems[j]] = [
+            weightedItems[j],
+            weightedItems[i],
+        ];
     }
 
     // Deduplicate items and limit to maxItems
@@ -88,11 +90,15 @@ const getRandomizedItems = (items: RelatedFile[], maxItems: number) => {
 };
 
 // Separate and process stories
-const stories = computed(() => props.relatedFiles?.filter((file) => file.type === 'story') || []);
+const stories = computed(
+    () => props.relatedFiles?.filter((file) => file.type === 'story') || []
+);
 const limitedStories = computed(() => getRandomizedItems(stories.value, 4));
 
 // Separate and process products
-const products = computed(() => props.relatedFiles?.filter((file) => file.type === 'product') || []);
+const products = computed(
+    () => props.relatedFiles?.filter((file) => file.type === 'product') || []
+);
 const limitedProducts = computed(() => getRandomizedItems(products.value, 4));
 </script>
 

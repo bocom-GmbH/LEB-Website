@@ -6,19 +6,20 @@
     >
         <Transition name="fade">
             <q-img
-                v-if="!isScrolled"
+                v-if="!isScrolled && route.path === '/'"
                 width="150px"
                 src="/public/logo.png"
                 alt=""
             />
-            <q-img
-                v-else
-                class="logo_small cursor-pointer"
-                src="/public/logo_small.png"
-                alt=""
-                @click="router.push('/')"
-            />
         </Transition>
+
+        <q-img
+            v-if="isScrolled || route.path !== '/'"
+            class="logo_small cursor-pointer"
+            src="/public/logo_small.png"
+            alt=""
+            @click="router.push('/')"
+        />
 
         <div
             v-if="!isSmallScreen"
@@ -75,11 +76,21 @@
                 </q-menu>
             </q-btn>
         </div>
-        <div style="width: 100%" class="flex flex-end">
-            <q-space />
+        <div
+            v-else
+            style="width: 100%"
+            class="flex justify-between items-center"
+        >
+            <div class="w-56"></div>
             <q-btn
-                v-if="isSmallScreen"
-                class="q-mr-sm q-my-md text-primary"
+                flat
+                class="text-primary text-weight-bold"
+                label="Apotheke"
+                no-caps
+                @click="drawer = !drawer"
+            />
+            <q-btn
+                class="q-mr-sm q-my-md text-primary w-56"
                 flat
                 @click="drawer = !drawer"
                 round
@@ -106,19 +117,24 @@
                     default-opened
                     class="text-black cursor-pointer custom-btn-text"
                     expand-icon="none"
-                    @click="handleMobileItemClick(menuItem)"
+                    @click="
+                        menuItem.url ?? '/' ? router.push(menuItem.url) : null
+                    "
                 >
-                    <q-expansion-item
+                    <q-item
                         v-for="child in menuItem.children"
                         :key="child.id"
-                        :header-inset-level="1"
-                        :label="child.name"
-                        default-opened
-                        expand-icon="none"
-                        @click.stop="handleMobileItemClick(child)"
+                        clickable
+                        :inset-level="1"
                         class="cursor-pointer"
+                        @click="handleMobileItemClick(child)"
                     >
-                    </q-expansion-item>
+                        <q-item-section>
+                            <q-item-label class="text-black custom-btn-text">
+                                {{ child.name }}
+                            </q-item-label>
+                        </q-item-section>
+                    </q-item>
                 </q-expansion-item>
             </q-list>
         </q-scroll-area>
@@ -135,7 +151,7 @@ import {
     watch,
 } from 'vue';
 import { useQuasar } from 'quasar';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useDirectoryStore } from 'src/stores/directory-store';
 
 defineComponent({
@@ -146,6 +162,7 @@ const drawer = ref(false);
 
 const $q = useQuasar();
 const router = useRouter();
+const route = useRoute();
 const isSmallScreen = computed(() => $q.screen.lt.md);
 const isMobile = $q.platform.is.mobile;
 const headerHeight = ref('230px');
@@ -159,6 +176,7 @@ onUnmounted(() => {
 });
 
 function handleItemClick(item: { id: string }) {
+    console.log('item', item);
     if (item.id) {
         router.push(`/${item.id}`);
     }
@@ -168,8 +186,23 @@ const isScrolled = ref(false);
 
 function handleScroll() {
     isScrolled.value = window.scrollY > 0;
-    headerHeight.value = scrollY > 0 ? '70px' : '230px';
+    if (route.path !== '/') {
+        headerHeight.value = '70px';
+    } else {
+        headerHeight.value = scrollY > 0 ? '70px' : '230px';
+    }
 }
+
+watch(
+    () => route.path,
+    (newPath) => {
+        if (newPath !== '/') {
+            headerHeight.value = '70px';
+        } else {
+            headerHeight.value = scrollY > 0 ? '70px' : '230px';
+        }
+    }
+);
 
 const newMenuItems = ref(directoryStore.getDirectoryNested?.[0]?.children);
 
@@ -185,6 +218,8 @@ watch(
 );
 
 const handleMobileItemClick = (item: any) => {
+    console.log('item', item);
+    /*  if (!item.children || item.children.length === 0) { */
     if (item.url === '/') {
         router.push('/');
     } else if (item.url) {
@@ -193,6 +228,7 @@ const handleMobileItemClick = (item: any) => {
         router.push(`/${item.id}`);
     }
     drawer.value = false;
+    /*  } */
 };
 </script>
 
@@ -224,5 +260,27 @@ const handleMobileItemClick = (item: any) => {
     height: 50px;
     position: absolute;
     left: 10px;
+}
+
+.text-weight-bold {
+    font-weight: 600;
+}
+
+.absolute-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.z-top {
+    z-index: 1;
+}
+
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.w-56 {
+    width: 56px;
 }
 </style>

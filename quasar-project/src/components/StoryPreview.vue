@@ -7,7 +7,7 @@
             height="300px"
         >
             <div
-                class="absolute-bottom no-letter-spacing text-h6 text-center bg-primary"
+                class="name-container absolute-bottom no-letter-spacing text-h6 text-center bg-primary"
             >
                 {{ item.name }}
             </div>
@@ -28,5 +28,13 @@ const props = defineProps({
 .no-letter-spacing {
     letter-spacing: 0;
     line-height: 1.7rem;
+}
+
+:deep(.name-container) {
+    padding: 16px;
+
+    @media (max-width: 599px) {
+        padding: 8px;
+    }
 }
 </style>

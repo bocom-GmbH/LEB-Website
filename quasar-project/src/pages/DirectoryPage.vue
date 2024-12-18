@@ -8,7 +8,7 @@
             <div
                 v-for="item of directoryItem?.children"
                 :key="item.id"
-                class="col-12 col-sm-6 col-md-3"
+                class="col-6 col-sm-6 col-md-3"
             >
                 <component
                     v-if="componentStore.getComponentById(item.type ?? '')"

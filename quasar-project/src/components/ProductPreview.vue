@@ -32,4 +32,12 @@ const props = defineProps({
     letter-spacing: 0;
     line-height: 1.7rem;
 }
+
+:deep(.q-card__section) {
+    padding: 16px;
+
+    @media (max-width: 599px) {
+        padding: 8px;
+    }
+}
 </style>

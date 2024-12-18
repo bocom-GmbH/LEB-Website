@@ -6,12 +6,24 @@
             spinner-color="primary"
             spinner-size="82px"
         >
-            <div class="absolute-bottom text-subtitle1 text-center bg-primary">
+            <div
+                class="story-name absolute-bottom text-subtitle1 text-center bg-primary"
+            >
                 {{ file.name }}
             </div>
         </q-img>
     </q-card>
 </template>
+
+<style lang="scss" scoped>
+.story-name {
+    padding: 16px;
+
+    @media (max-width: 599px) {
+        padding: 4px;
+    }
+}
+</style>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';

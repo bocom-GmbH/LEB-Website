@@ -12,7 +12,9 @@
             spinner-size="82px"
             fit="scale-down"
         >
-            <div class="absolute-bottom text-subtitle1 text-center bg-primary">
+            <div
+                class="product-name absolute-bottom text-subtitle1 text-center bg-primary"
+            >
                 {{ file.name }}
             </div>
         </q-img>
@@ -43,3 +45,13 @@ const navigateTo = (item: any) => {
     });
 };
 </script>
+
+<style lang="scss" scoped>
+.product-name {
+    padding: 16px;
+
+    @media (max-width: 599px) {
+        padding: 4px;
+    }
+}
+</style>

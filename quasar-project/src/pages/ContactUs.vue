@@ -6,7 +6,7 @@
             </div>
 
             <div class="row q-col-gutter-xl justify-center q-mb-xl">
-                <!-- Contact Info Card -->
+                <!-- Contact Info Card - Első helyen -->
                 <div class="col-12 col-md-6">
                     <q-card flat bordered class="contact-card">
                         <q-card-section>
@@ -104,8 +104,67 @@
                     </q-card>
                 </div>
 
-                <!-- Map Card -->
+                <!-- Contact Form - Második helyen -->
                 <div class="col-12 col-md-6">
+                    <q-card flat bordered class="contact-card">
+                        <q-card-section>
+                            <div class="text-h6 q-mb-md">Kontaktformular</div>
+                            <q-form @submit="onSubmit" class="q-gutter-md">
+                                <q-input
+                                    v-model="formData.name"
+                                    :label="
+                                        getContentById(ELEMENT_IDS.NAME_LABEL)
+                                    "
+                                    outlined
+                                    required
+                                />
+
+                                <q-input
+                                    v-model="formData.email"
+                                    :label="
+                                        getContentById(ELEMENT_IDS.EMAIL_LABEL)
+                                    "
+                                    outlined
+                                    type="email"
+                                    required
+                                />
+
+                                <q-input
+                                    v-model="formData.message"
+                                    :label="
+                                        getContentById(
+                                            ELEMENT_IDS.INQUIRY_LABEL
+                                        )
+                                    "
+                                    type="textarea"
+                                    outlined
+                                    required
+                                    rows="6"
+                                />
+
+                                <div class="text-caption q-mb-md">
+                                    {{
+                                        getContentById(
+                                            ELEMENT_IDS.PRIVACY_NOTICE
+                                        )
+                                    }}
+                                </div>
+
+                                <div class="row justify-end">
+                                    <q-btn
+                                        label="Senden"
+                                        type="submit"
+                                        color="primary"
+                                        :loading="isSending"
+                                    />
+                                </div>
+                            </q-form>
+                        </q-card-section>
+                    </q-card>
+                </div>
+
+                <!-- Map Card - Harmadik helyen -->
+                <div class="col-12">
                     <q-card flat bordered class="map-card">
                         <q-card-section>
                             <div class="text-subtitle2 q-mb-sm">
@@ -131,53 +190,6 @@
                     </q-card>
                 </div>
             </div>
-        </div>
-
-        <!-- Contact Form Section -->
-        <div class="form-container q-mx-auto q-mt-xl">
-            <q-card flat bordered>
-                <q-card-section>
-                    <div class="text-h5 q-mb-md">Kontaktformular</div>
-                    <q-form @submit="onSubmit" class="q-gutter-md">
-                        <q-input
-                            v-model="formData.name"
-                            :label="getContentById(ELEMENT_IDS.NAME_LABEL)"
-                            outlined
-                            required
-                        />
-
-                        <q-input
-                            v-model="formData.email"
-                            :label="getContentById(ELEMENT_IDS.EMAIL_LABEL)"
-                            outlined
-                            type="email"
-                            required
-                        />
-
-                        <q-input
-                            v-model="formData.message"
-                            :label="getContentById(ELEMENT_IDS.INQUIRY_LABEL)"
-                            type="textarea"
-                            outlined
-                            required
-                            rows="6"
-                        />
-
-                        <div class="text-caption q-mb-md">
-                            {{ getContentById(ELEMENT_IDS.PRIVACY_NOTICE) }}
-                        </div>
-
-                        <div class="row justify-end">
-                            <q-btn
-                                label="Senden"
-                                type="submit"
-                                color="primary"
-                                :loading="isSending"
-                            />
-                        </div>
-                    </q-form>
-                </q-card-section>
-            </q-card>
         </div>
     </q-page>
 </template>
