@@ -3,8 +3,8 @@
         {{ directoryItem?.name }}
     </div>
     <br />
-    <div class="content-wrapper q-px-md">
-        <div class="row q-col-gutter-md justify-center">
+    <div class="content-wrapper q-px-md q-mb-lg">
+        <div class="row q-col-gutter-md justify-center q-mb-xl">
             <div
                 v-for="item of directoryItem?.children"
                 :key="item.id"

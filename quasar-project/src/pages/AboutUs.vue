@@ -2,7 +2,7 @@
     <q-page class="q-pa-md">
         <div class="content-container q-mx-auto q-mb-xl">
             <div class="text-h3 text-center q-mb-xl">Über uns</div>
-            <div class="text-body1 text-center">
+            <div class="text-body1 text-justify">
                 {{ aboutUsFile?.data[0]?.data?.content }}
             </div>
         </div>
@@ -29,7 +29,7 @@
                         </div>
 
                         <q-card-section class="col q-pb-none">
-                            <div class="row items-center q-mb-sm">
+                            <div class="row q-mb-sm">
                                 <div class="text-h6">
                                     {{ member.pre_nominal_title }}
                                     {{ member.first_name }}
@@ -88,7 +88,15 @@ onMounted(async () => {
         }
 
         .q-img {
-            width: 100% !important;
+            width: 70% !important;
+            margin: 0 auto;
+        }
+
+        .col-auto {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
     }
 }

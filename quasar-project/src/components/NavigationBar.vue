@@ -12,7 +12,7 @@
                     src="/public/logo.png"
                     alt=""
                 />
-                <q-imgs
+                <q-img
                     v-else
                     class="logo_small cursor-pointer"
                     src="/public/logo_small.png"
@@ -22,12 +22,12 @@
             </div>
             <div v-else>
                 <q-img
-                    v-if="!isScrolled"
+                    v-if="isScrolled === false"
                     width="150px"
                     src="/public/logo.png"
                     alt=""
                 />
-                <q-imgs
+                <q-img
                     v-else
                     class="logo_small cursor-pointer"
                     src="/public/logo_small.png"
@@ -191,7 +191,6 @@ onUnmounted(() => {
 });
 
 function handleItemClick(item: { id: string }) {
-    console.log('item', item);
     if (item.id) {
         router.push(`/${item.id}`);
     }
@@ -275,6 +274,7 @@ const handleMobileItemClick = (item: any) => {
     height: 50px;
     position: absolute;
     left: 10px;
+    top: 10px;
 }
 
 .text-weight-bold {

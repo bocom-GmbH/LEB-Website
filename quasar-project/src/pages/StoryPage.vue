@@ -48,9 +48,9 @@
         </div>
 
         <grid-component
+            style="margin-bottom: 48px"
             v-if="storyFile?.relatedFiles.length"
             :relatedFiles="storyFile?.relatedFiles"
-            style="margin-bottom: 200px"
             :label="'Interessante Beiträge'"
         />
     </div>
