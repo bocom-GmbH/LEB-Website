@@ -1,15 +1,14 @@
 <template>
     <div class="container">
         <div class="q-mt-xl inner-container">
-            <div class="info-container flex flex-center items-center">
+            <div class="info-container flex flex-center items-center image-container">
                 <q-img
                     :src="
                         'https://images.db-bocom.at/' +
                         getContentById(ELEMENT_IDS.IMAGE)
                     "
-                    width="100%"
-                    height="450px"
                     fit="scale-down"
+                    class="product-image"
                 />
             </div>
             <!-- {{ productFile }} -->
@@ -251,10 +250,23 @@ p {
     justify-content: center;
 }
 
-@media (max-width: 768px) {
+.product-image {
+    width: 100%;
+    height: 450px;
+}
+
+@media (max-width: 599px) {
     .inner-container {
         flex-direction: column; /* Stack boxes vertically on medium or smaller screens */
         align-items: center;
+    }
+
+    .product-image {
+        height: 280px;
+    }
+
+    .image-container {
+        padding-bottom: 20px;
     }
 }
 

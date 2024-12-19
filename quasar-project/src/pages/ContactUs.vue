@@ -27,9 +27,11 @@
                             </div>
 
                             <div class="contact-details q-mb-md">
-                                <div>Tel: {{ contactData?.phoneNumber }}</div>
+                                <div>Tel: <a :href="'tel:' + contactData?.phoneNumber" class="text-black">{{
+                                        contactData?.phoneNumber }}</a></div>
                                 <div>Fax: {{ contactData?.faxNumber }}</div>
-                                <div>E-Mail: {{ contactData?.email }}</div>
+                                <div>E-Mail: <a :href="'mailto:' + contactData?.email" class="text-black">{{
+                                        contactData?.email }}</a></div>
                             </div>
 
                             <div class="opening-hours q-mb-md">
@@ -45,55 +47,28 @@
                                     Folgen Sie uns!
                                 </div>
                                 <div class="row q-gutter-md">
-                                    <q-btn
-                                        v-if="contactData?.facebook"
-                                        flat
-                                        type="a"
-                                        :href="contactData.facebook"
-                                        target="_blank"
-                                        class="social-btn"
-                                    >
+                                    <q-btn v-if="contactData?.facebook" flat type="a" :href="contactData.facebook"
+                                        target="_blank" class="social-btn">
                                         <div class="social-media-icon">
-                                            <svg
-                                                width="40"
-                                                height="40"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
+                                            <svg width="40" height="40" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M11,10h2.6l0.4-3H11V5.3c0-0.9,0.2-1.5,1.5-1.5H14V1.1c-0.3,0-1-0.1-2.1-0.1C9.6,1,8,2.4,8,5v2H5.5v3H8v8h3V10z"
-                                                />
+                                                    d="M11,10h2.6l0.4-3H11V5.3c0-0.9,0.2-1.5,1.5-1.5H14V1.1c-0.3,0-1-0.1-2.1-0.1C9.6,1,8,2.4,8,5v2H5.5v3H8v8h3V10z" />
                                             </svg>
                                             <span>Facebook</span>
                                         </div>
                                     </q-btn>
 
-                                    <q-btn
-                                        v-if="contactData?.instagram"
-                                        flat
-                                        type="a"
-                                        :href="contactData.instagram"
-                                        target="_blank"
-                                        class="social-btn"
-                                    >
+                                    <q-btn v-if="contactData?.instagram" flat type="a" :href="contactData.instagram"
+                                        target="_blank" class="social-btn">
                                         <div class="social-media-icon">
-                                            <svg
-                                                width="40"
-                                                height="40"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
+                                            <svg width="40" height="40" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M13.55,1H6.46C3.45,1,1,3.44,1,6.44v7.12c0,3,2.45,5.44,5.46,5.44h7.08c3.02,0,5.46-2.44,5.46-5.44V6.44 C19.01,3.44,16.56,1,13.55,1z M17.5,14c0,1.93-1.57,3.5-3.5,3.5H6c-1.93,0-3.5-1.57-3.5-3.5V6c0-1.93,1.57-3.5,3.5-3.5h8 c1.93,0,3.5,1.57,3.5,3.5V14z"
-                                                />
-                                                <circle
-                                                    cx="14.87"
-                                                    cy="5.26"
-                                                    r="1.09"
-                                                />
+                                                    d="M13.55,1H6.46C3.45,1,1,3.44,1,6.44v7.12c0,3,2.45,5.44,5.46,5.44h7.08c3.02,0,5.46-2.44,5.46-5.44V6.44 C19.01,3.44,16.56,1,13.55,1z M17.5,14c0,1.93-1.57,3.5-3.5,3.5H6c-1.93,0-3.5-1.57-3.5-3.5V6c0-1.93,1.57-3.5,3.5-3.5h8 c1.93,0,3.5,1.57,3.5,3.5V14z" />
+                                                <circle cx="14.87" cy="5.26" r="1.09" />
                                                 <path
-                                                    d="M10.03,5.45c-2.55,0-4.63,2.06-4.63,4.6c0,2.55,2.07,4.61,4.63,4.61c2.56,0,4.63-2.061,4.63-4.61 C14.65,7.51,12.58,5.45,10.03,5.45L10.03,5.45L10.03,5.45z M10.08,13c-1.66,0-3-1.34-3-2.99c0-1.65,1.34-2.99,3-2.99s3,1.34,3,2.99 C13.08,11.66,11.74,13,10.08,13L10.08,13L10.08,13z"
-                                                />
+                                                    d="M10.03,5.45c-2.55,0-4.63,2.06-4.63,4.6c0,2.55,2.07,4.61,4.63,4.61c2.56,0,4.63-2.061,4.63-4.61 C14.65,7.51,12.58,5.45,10.03,5.45L10.03,5.45L10.03,5.45z M10.08,13c-1.66,0-3-1.34-3-2.99c0-1.65,1.34-2.99,3-2.99s3,1.34,3,2.99 C13.08,11.66,11.74,13,10.08,13L10.08,13L10.08,13z" />
                                             </svg>
                                             <span>Instagram</span>
                                         </div>
@@ -110,37 +85,16 @@
                         <q-card-section>
                             <div class="text-h6 q-mb-md">Kontaktformular</div>
                             <q-form @submit="onSubmit" class="q-gutter-md">
-                                <q-input
-                                    v-model="formData.name"
-                                    :label="
-                                        getContentById(ELEMENT_IDS.NAME_LABEL)
-                                    "
-                                    outlined
-                                    required
-                                />
+                                <q-input v-model="formData.name" :label="getContentById(ELEMENT_IDS.NAME_LABEL)
+                                    " outlined required />
 
-                                <q-input
-                                    v-model="formData.email"
-                                    :label="
-                                        getContentById(ELEMENT_IDS.EMAIL_LABEL)
-                                    "
-                                    outlined
-                                    type="email"
-                                    required
-                                />
+                                <q-input v-model="formData.email" :label="getContentById(ELEMENT_IDS.EMAIL_LABEL)
+                                    " outlined type="email" required />
 
-                                <q-input
-                                    v-model="formData.message"
-                                    :label="
-                                        getContentById(
-                                            ELEMENT_IDS.INQUIRY_LABEL
-                                        )
-                                    "
-                                    type="textarea"
-                                    outlined
-                                    required
-                                    rows="6"
-                                />
+                                <q-input v-model="formData.message" :label="getContentById(
+                                    ELEMENT_IDS.INQUIRY_LABEL
+                                )
+                                    " type="textarea" outlined required rows="6" />
 
                                 <div class="text-caption q-mb-md">
                                     {{
@@ -151,12 +105,7 @@
                                 </div>
 
                                 <div class="row justify-end">
-                                    <q-btn
-                                        label="Senden"
-                                        type="submit"
-                                        color="primary"
-                                        :loading="isSending"
-                                    />
+                                    <q-btn label="Senden" type="submit" color="primary" :loading="isSending" />
                                 </div>
                             </q-form>
                         </q-card-section>
@@ -176,15 +125,9 @@
                                 {{ getContentById(ELEMENT_IDS.DIRECTIONS) }}
                             </div>
                             <div class="map-container">
-                                <iframe
-                                    :src="contactData?.map"
-                                    width="100%"
-                                    height="450"
-                                    style="border: 0"
-                                    allowfullscreen=""
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                ></iframe>
+                                <iframe :src="contactData?.map" width="100%" height="450" style="border: 0"
+                                    allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </q-card-section>
                     </q-card>

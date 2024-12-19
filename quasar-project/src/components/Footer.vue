@@ -27,10 +27,13 @@
                     </div>
                     <div>
                         <q-btn flat label="Öffnungszeiten" class="text-white">
-                            <q-menu>
-                                <div
-                                    class="q-py-md q-px-lg bg-secondary text-white"
-                                    v-html="openingHours">
+                            <q-menu :offset="[0,20]">
+                                <div class="q-py-md q-px-lg bg-secondary text-white">
+                                    <b>Öffnungszeiten</b>
+                                    <div
+                                        class=""
+                                        v-html="openingHours">
+                                    </div>
                                 </div>
                             </q-menu>
                         </q-btn>
