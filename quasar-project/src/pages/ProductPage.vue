@@ -13,7 +13,7 @@
             </div>
             <!-- {{ productFile }} -->
             <q-card class="info-container q-pa-md bg-primary">
-                <div class="text-h4">{{ productFile?.label }}</div>
+                <div class="text-h4" style="margin-bottom: 7px;">{{ productFile?.label }}</div>
                 <div v-if="getContentById(ELEMENT_IDS.DESCRIPTION)">
                     <p>{{ getContentById(ELEMENT_IDS.DESCRIPTION) }}</p>
                 </div>
@@ -21,7 +21,7 @@
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
                 </div> -->
                 <div class="text-h5 price_and_quantity">
-                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span>Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
+                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span class="quantity">Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
                 </div>
                 <q-list class="q-mt-md">
                     <q-expansion-item
@@ -80,7 +80,7 @@
         <h3>Interessante Produkte</h3>
     </div> -->
     <GridComponent
-        style="margin-top: 96px"
+        class="grid_container"
         :relatedFiles="productFile?.relatedFiles"
         :label="'Interessante Beiträge'"
     />
@@ -225,7 +225,9 @@ watch([hasHinweis, hasAnwendung, hasInhaltsstoffe], () => {
 <style scoped>
 p {
     font-size: 18px;
+    margin-bottom: 7px;
 }
+
 .container {
     display: flex;
     justify-content: center;
@@ -239,6 +241,10 @@ p {
 .price_and_quantity {
     display: flex;
     justify-content: space-between;
+}
+
+.quantity {
+    font-size: 1.25rem;
 }
 
 .inner-container {
@@ -267,6 +273,15 @@ p {
 
     .image-container {
         padding-bottom: 20px;
+    }
+}
+
+.grid_container {
+    margin-top: 96px;
+    margin-bottom: 48px;
+
+    @media (max-width: 599px) {
+        margin-top: 40px;
     }
 }
 

@@ -28,7 +28,7 @@
                             />
                         </div>
 
-                        <q-card-section class="col q-pb-none">
+                        <q-card-section class="col">
                             <div class="row q-mb-sm">
                                 <div class="text-h6">
                                     {{ member.pre_nominal_title }}
@@ -44,7 +44,7 @@
                             </div>
                             <q-separator class="q-my-sm" />
 
-                            <div class="text-body2">
+                            <div class="text-body2 description">
                                 {{ member.description }}
                             </div>
                         </q-card-section>
@@ -80,9 +80,18 @@ onMounted(async () => {
     max-width: 1000px;
 }
 
+.description {
+    text-align: justify;
+    hyphens: auto;
+}
+
 // Reszponzív beállítások
 @media (max-width: 599px) {
     .team-card {
+        .col {
+            padding-top: 0;
+        }
+
         .row {
             flex-direction: column;
         }

@@ -5,12 +5,11 @@
             :src="`https://images.db-bocom.at/${getContentById(
                 ELEMENT_IDS.IMAGE
             )}`"
-            height="400px"
-            class="full-width"
+            class="full-width image"
         >
         </q-img>
         <div class="q-pa-md q-mx-auto content-container">
-            <div class="text-h3 text-center q-my-lg">
+            <div class="text-h3 text-center q-my-lg title">
                 {{ storyFile?.label }}
             </div>
             <!-- <button @click="toggler = !toggler">Open the lightbox.</button>
@@ -30,7 +29,7 @@
                             !element.data.content.endsWith('.jpg') &&
                             !element.data.content.endsWith('.jpeg')
                         "
-                        class="text-h6 text-weight-regular text-center q-mb-xl"
+                        class="text-h5 text-weight-regular text-center q-mb-xl"
                     >
                         {{ element.data.content }}
                     </div>
@@ -143,6 +142,19 @@ watch(
 </script>
 
 <style lang="scss" scoped>
+.title {
+    @media (max-width: 599px) {
+        font-size: 2.3rem;
+    }
+}
+
+.image {
+    height: 400px;
+    @media (max-width: 599px) {
+        height: 50vw;
+    }
+}
+
 .story-container {
     max-width: 100%;
 }
@@ -155,7 +167,7 @@ watch(
     text-align: justify;
 
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
         font-weight: 500;
         margin: 2rem 0 1rem 0;
         line-height: 2.2rem;
