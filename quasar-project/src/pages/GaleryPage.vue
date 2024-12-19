@@ -1,44 +1,41 @@
 <template>
     <q-page class="q-pa-md">
         <!-- Mappa nézet -->
-        <div v-if="!selectedFolder" class="content-container q-mx-auto">
+        <div v-if="!selectedFolder" class="container q-mx-auto">
             <div class="text-h3 text-center q-mb-xl">
                 {{ galeryFile?.label }}
             </div>
 
-            <div class="row q-col-gutter-xl justify-center">
+            <div class="row q-col-gutter-md items-stretch justify-center">
                 <div
                     v-for="(folder, index) in galeryFile?.data"
                     :key="index"
-                    class="col-12 col-sm-6 col-md-4"
+                    class="col-12 col-sm-6 col-md-4 col-lg-3"
                 >
                     <q-card
                         class="gallery-folder cursor-pointer"
-                        @click="openFolder(index)"
                         flat
-                        bordered
+                        @click="openFolder(index)"
                     >
                         <q-img
                             :src="`https://images.db-bocom.at/${
                                 folder.title_image || folder.titel_image
                             }`"
-                            :ratio="1"
                             spinner-color="primary"
                             spinner-size="82px"
+                            height="280px"
                         >
                             <div
-                                class="absolute-bottom no-letter-spacing text-h6 text-center bg-primary"
+                                class="absolute-bottom text-h6 text-center bg-primary"
                             >
                                 {{ folder.title }}
-                                <div
-                                    class="no-letter-spacing text-h6 text-center bg-primary"
-                                >
-                                    <div v-if="folder.images.length > 1">
-                                        {{ folder.images.length }} Bilder
-                                    </div>
-                                    <div v-else>
-                                        {{ folder.images.length }} Bild
-                                    </div>
+                                <div class="text-subtitle1">
+                                    {{ folder.images.length }}
+                                    {{
+                                        folder.images.length > 1
+                                            ? 'Bilder'
+                                            : 'Bild'
+                                    }}
                                 </div>
                             </div>
                         </q-img>
@@ -82,20 +79,31 @@ const openFolder = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
-.content-container {
+.container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .gallery-folder {
     transition: transform 0.2s ease;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 
     &:hover {
         transform: translateY(-4px);
     }
 }
 
-.bg-dark-dimmed {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1rem;
+.q-img {
+    min-height: 200px;
+}
+
+// Média lekérdezések a reszponzív viselkedéshez
+@media (max-width: 599px) {
+    .gallery-folder {
+        max-width: 100%;
+    }
 }
 </style>

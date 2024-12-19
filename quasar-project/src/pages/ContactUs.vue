@@ -6,7 +6,6 @@
             </div>
 
             <div class="row q-col-gutter-xl justify-center q-mb-xl">
-                <!-- Contact Info Card - Első helyen -->
                 <div class="col-12 col-md-6">
                     <q-card flat bordered class="contact-card">
                         <q-card-section>
@@ -39,7 +38,6 @@
                                 <div v-html="contactData?.openingTimes"></div>
                             </div>
 
-                            <!-- Social Media Links -->
                             <div class="social-links q-mt-md">
                                 <div class="text-h5 q-mb-md">
                                     Folgen Sie uns!
@@ -108,7 +106,9 @@
                 <div class="col-12 col-md-6">
                     <q-card flat bordered class="contact-card">
                         <q-card-section>
-                            <div class="text-h6 q-mb-md">Kontaktformular</div>
+                            <div class="text-h6 q-mb-md q-ml-md">
+                                Kontaktformular
+                            </div>
                             <q-form @submit="onSubmit" class="q-gutter-md">
                                 <q-input
                                     v-model="formData.name"
@@ -255,7 +255,7 @@ const onSubmit = async () => {
             $q.notify({
                 type: 'positive',
                 message: 'Ihre Nachricht wurde erfolgreich gesendet!',
-                position: 'top',
+                position: 'center',
             });
 
             formData.value = {
@@ -270,7 +270,7 @@ const onSubmit = async () => {
             type: 'negative',
             message:
                 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
-            position: 'top',
+            position: 'center',
         });
     }
 };
