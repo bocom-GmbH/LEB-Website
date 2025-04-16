@@ -22,10 +22,14 @@
                     <p>{{ getContentById(ELEMENT_IDS.QUANTITY) }}</p>
                 </div> -->
                 <div class="text-h5 price_and_quantity">
-                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span><span>Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span>
+                    <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span
+                    ><span
+                        >Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span
+                    >
                 </div>
                 <q-list class="q-mt-md">
                     <q-expansion-item
+                        v-if="getContentById(ELEMENT_IDS.INGREDIENTS)"
                         expand-separator
                         label="Inhalt"
                         :header-style="{
@@ -45,6 +49,7 @@
                     </q-expansion-item>
 
                     <q-expansion-item
+                        v-if="getContentById(ELEMENT_IDS.USAGE)"
                         expand-separator
                         label="Anwendung"
                         :header-style="{
@@ -60,6 +65,7 @@
                     </q-expansion-item>
 
                     <q-expansion-item
+                        v-if="getContentById(ELEMENT_IDS.NOTICE)"
                         expand-separator
                         label="Hinweise"
                         :header-style="{

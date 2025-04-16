@@ -14,12 +14,18 @@
                             class="text-white"
                         />
                     </div>
-                    <div v-if="!isSmallScreen">© Lebenskreis Apotheke 2024</div>
+                    <div v-if="!isSmallScreen">
+                        © Lebenskreis Apotheke {{ new Date().getFullYear() }}
+                    </div>
                 </div>
                 <div class="flex flex-row">
                     <div v-if="!isSmallScreen">
                         <q-btn
-                            @click="navigateTo('/contact-us')"
+                            @click="
+                                navigateTo(
+                                    '/kontakt/b6f6f64d-5847-46f2-ae7c-c07a24cce7fd'
+                                )
+                            "
                             flat
                             label="Kontakt"
                             class="text-white"
@@ -30,8 +36,8 @@
                             <q-menu>
                                 <div
                                     class="q-py-md q-px-lg bg-secondary text-white"
-                                    v-html="openingHours">
-                                </div>
+                                    v-html="openingHours"
+                                ></div>
                             </q-menu>
                         </q-btn>
                     </div>

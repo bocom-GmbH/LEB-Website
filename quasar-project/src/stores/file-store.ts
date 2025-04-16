@@ -131,6 +131,7 @@ export const useFileStore = defineStore('file', {
             }
             const result = await fetchFileById(id);
             if (result) {
+                console.log('result', result);
                 this.remoteFiles = [...this.remoteFiles, result];
                 this.localFiles = [...this.localFiles, result];
                 return result;
