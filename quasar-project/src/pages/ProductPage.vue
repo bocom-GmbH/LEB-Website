@@ -13,7 +13,6 @@
                     class="product-image"
                 />
             </div>
-            <!-- {{ productFile }} -->
             <q-card class="info-container q-pa-md bg-primary">
                 <div class="text-h4" style="margin-bottom: 7px">
                     {{ productFile?.label }}
