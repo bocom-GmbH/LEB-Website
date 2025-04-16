@@ -16,7 +16,7 @@
         <grid-2
             v-if="homeFile?.relatedFiles.length"
             :relatedFiles="homeFile?.relatedFiles"
-            style="margin-bottom: 200px; margin-top: 50px"
+            class="grid-container"
             :label="''"
         />
         <!--    <component
@@ -83,9 +83,15 @@ defineOptions({
 </script>
 
 <style scoped>
-.grid-conteiner {
-    max-width: 1200px;
-    margin: 0 auto;
+.grid-container {
+    margin-bottom: 200px;
+    margin-top: 50px
+}
+
+@media (max-width: 599px) {
+    .grid-container {
+        margin-bottom: 20px;
+    }
 }
 
 .my-card {

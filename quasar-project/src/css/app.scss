@@ -119,3 +119,14 @@ p.light-text {
     font-family: 'Proxima Nova', sans-serif;
     font-weight: 300; /* Light weight */
 }
+
+@media (max-width: 599px) {
+    .text-h4 {
+        font-size: 1.9rem;
+    }
+}
+
+
+a {
+    text-decoration: none;
+}

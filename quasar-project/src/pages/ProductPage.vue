@@ -1,20 +1,23 @@
 <template>
     <div class="container">
         <div class="q-mt-xl inner-container">
-            <div class="info-container flex flex-center items-center">
+            <div
+                class="info-container flex flex-center items-center image-container"
+            >
                 <q-img
                     :src="
                         'https://images.db-bocom.at/' +
                         getContentById(ELEMENT_IDS.IMAGE)
                     "
-                    width="100%"
-                    height="450px"
                     fit="scale-down"
+                    class="product-image"
                 />
             </div>
             <!-- {{ productFile }} -->
             <q-card class="info-container q-pa-md bg-primary">
-                <div class="text-h4">{{ productFile?.label }}</div>
+                <div class="text-h4" style="margin-bottom: 7px">
+                    {{ productFile?.label }}
+                </div>
                 <div v-if="getContentById(ELEMENT_IDS.DESCRIPTION)">
                     <p>{{ getContentById(ELEMENT_IDS.DESCRIPTION) }}</p>
                 </div>
@@ -23,7 +26,7 @@
                 </div> -->
                 <div class="text-h5 price_and_quantity">
                     <span>€ {{ getContentById(ELEMENT_IDS.PRICE) }}</span
-                    ><span
+                    ><span class="quantity"
                         >Menge: {{ getContentById(ELEMENT_IDS.QUANTITY) }}</span
                     >
                 </div>
@@ -87,7 +90,7 @@
         <h3>Interessante Produkte</h3>
     </div> -->
     <GridComponent
-        style="margin-top: 96px"
+        class="grid_container"
         :relatedFiles="productFile?.relatedFiles"
         :label="'Interessante Beiträge'"
     />
@@ -232,7 +235,9 @@ watch([hasHinweis, hasAnwendung, hasInhaltsstoffe], () => {
 <style scoped>
 p {
     font-size: 18px;
+    margin-bottom: 7px;
 }
+
 .container {
     display: flex;
     justify-content: center;
@@ -248,6 +253,10 @@ p {
     justify-content: space-between;
 }
 
+.quantity {
+    font-size: 1.25rem;
+}
+
 .inner-container {
     max-width: 1024px;
     padding: 16px;
@@ -257,10 +266,32 @@ p {
     justify-content: center;
 }
 
-@media (max-width: 768px) {
+.product-image {
+    width: 100%;
+    height: 450px;
+}
+
+@media (max-width: 599px) {
     .inner-container {
         flex-direction: column; /* Stack boxes vertically on medium or smaller screens */
         align-items: center;
+    }
+
+    .product-image {
+        height: 280px;
+    }
+
+    .image-container {
+        padding-bottom: 20px;
+    }
+}
+
+.grid_container {
+    margin-top: 96px;
+    margin-bottom: 48px;
+
+    @media (max-width: 599px) {
+        margin-top: 40px;
     }
 }
 

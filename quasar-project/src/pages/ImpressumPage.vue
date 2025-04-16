@@ -1,19 +1,18 @@
 <template>
     <q-page class="q-pa-lg">
         <div class="text-h4 text-center text-weight-bold">Impressum</div>
-        <div
-            class="text-center text-h5"
-            style="font-size: 1.5em; max-width: 1200px; margin: 0 auto"
-        >
+        <div class="text-center text-h5" style="font-size: 1.5em; max-width: 1200px; margin: 0 auto">
             {{ getContentById(ELEMENT_IDS.COMPANY_NAME) }}<br />
             {{ getContentById(ELEMENT_IDS.STREET) }}
             {{ getContentById(ELEMENT_IDS.HOUSENUMBER) }}<br />
             {{ getContentById(ELEMENT_IDS.POSTAL_CODE) }},
             {{ getContentById(ELEMENT_IDS.CITY) }},
             {{ getContentById(ELEMENT_IDS.COUNTRY) }}<br /><br />
-            Tel.: {{ getContentById(ELEMENT_IDS.PHONE_NUMBER) }}<br />
+            Tel.: <a :href="'tel:' + getContentById(ELEMENT_IDS.PHONE_NUMBER)" class="text-black">{{
+                getContentById(ELEMENT_IDS.PHONE_NUMBER) }}</a><br />
             Fax.: {{ getContentById(ELEMENT_IDS.FAX_NUMBER) }}<br />
-            {{ getContentById(ELEMENT_IDS.EMAIL) }}<br /><br />
+            <a :href="'mailto:' + getContentById(ELEMENT_IDS.EMAIL)" class="text-black">{{
+                getContentById(ELEMENT_IDS.EMAIL) }}</a><br /><br />
             <strong>Informationen lt. ECG</strong><br />
             UID Nummer: {{ getContentById(ELEMENT_IDS.UID) }}<br />
             Firmenbuch Nummer: {{ getContentById(ELEMENT_IDS.REGISTRY_NUMBER)

@@ -7,7 +7,7 @@
                 <div
                     v-for="(file, index) in limitedStories"
                     :key="index"
-                    class="col-12 col-sm-6 col-md-3"
+                    class="col-6 col-md-3"
                 >
                     <StoryCard :file="file" />
                 </div>
@@ -21,7 +21,7 @@
                 <div
                     v-for="(file, index) in limitedProducts"
                     :key="index"
-                    class="col-12 col-sm-6 col-md-3"
+                    class="col-6 col-md-3"
                 >
                     <ProductCard :file="file" />
                 </div>
