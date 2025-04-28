@@ -95,13 +95,13 @@
             class="flex justify-between items-center"
         >
             <div class="w-56"></div>
-            <q-btn
+            <!--  <q-btn
                 flat
                 class="text-primary text-weight-bold"
                 label="Apotheke"
                 no-caps
                 @click="drawer = !drawer"
-            />
+            /> -->
             <q-btn
                 class="q-mr-sm q-my-md text-primary w-56"
                 flat
