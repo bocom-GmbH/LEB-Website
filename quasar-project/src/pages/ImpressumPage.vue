@@ -17,9 +17,9 @@
             UID Nummer: {{ getContentById(ELEMENT_IDS.UID) }}<br />
             Firmenbuch Nummer: {{ getContentById(ELEMENT_IDS.REGISTRY_NUMBER)
             }}<br />
-            Firmenbuchgericht: {{ getContentById(ELEMENT_IDS.REGISTRY_COURT)
+            Firmenbuchgericht: Leoben<br />
+            Zuständige Aufsichtsbehörde: {{ getContentById(ELEMENT_IDS.REGISTRY_COURT)
             }}<br />
-            Zuständige Aufsichtsbehörde:<br />
             {{ getContentById(ELEMENT_IDS.SUPERVISORY_AUTHORITY) }}<br /><br />
             {{ getContentById(ELEMENT_IDS.DESCRIPTION) }}<br /><br />
             {{ getContentById(ELEMENT_IDS.ADDITIONAL_INFO) }}

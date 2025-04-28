@@ -4,37 +4,35 @@
         class="bg-white flex column no-wrap items-center justify-center"
         :style="{ height: headerHeight, transition: 'height 0.5s ease' }"
     >
-        <Transition name="fade">
-            <div v-if="isSmallScreen">
-                <q-img
-                    v-if="!isScrolled && route.path === '/'"
-                    width="150px"
-                    src="/public/logo.png"
-                    alt=""
-                />
-                <q-img
-                    v-else
-                    class="logo_small cursor-pointer"
-                    src="/public/logo_small.png"
-                    alt=""
-                    @click="router.push('/')"
-                />
-            </div>
-            <div v-else>
-                <q-img
-                    v-if="isScrolled === false"
-                    width="150px"
-                    src="/public/logo.png"
-                    alt=""
-                />
-                <q-img
-                    v-else
-                    class="logo_small cursor-pointer"
-                    src="/public/logo_small.png"
-                    alt=""
-                    @click="router.push('/')"
-                />
-            </div>
+        <Transition name="fade" v-if="isSmallScreen">
+            <q-img
+                v-if="!isScrolled && route.path === '/'"
+                width="150px"
+                :src="logo"
+                alt=""
+            />
+            <q-img
+                v-else
+                class="logo_small cursor-pointer"
+                :src="logo_small"
+                alt=""
+                @click="router.push('/')"
+            />
+        </Transition>
+        <Transition name="fade" v-else>
+            <q-img
+                v-if="isScrolled"
+                class="logo_small cursor-pointer"
+                :src="logo_small"
+                alt=""
+                @click="router.push('/')"
+            />
+            <q-img
+                v-else
+                width="150px"
+                :src="logo"
+                alt=""
+            />
         </Transition>
         <div
             v-if="!isSmallScreen"
@@ -165,9 +163,11 @@ import {
     Transition,
     watch,
 } from 'vue';
-import { useQuasar } from 'quasar';
+import { is, useQuasar } from 'quasar';
 import { useRouter, useRoute } from 'vue-router';
 import { useDirectoryStore } from 'src/stores/directory-store';
+import logo from '../../public/logo.png';
+import logo_small from '../../public/logo_small.png';
 
 defineComponent({
     name: 'NavigationBar',
@@ -200,6 +200,7 @@ const isScrolled = ref(false);
 
 function handleScroll() {
     isScrolled.value = window.scrollY > 0;
+    console.log(isScrolled.value);
     if (route.path !== '/' && isSmallScreen.value) {
         headerHeight.value = '70px';
     } else {
@@ -210,10 +211,14 @@ function handleScroll() {
 watch(
     () => route.path,
     (newPath) => {
-        if (newPath !== '/') {
-            headerHeight.value = '70px';
+        if (isSmallScreen.value) {
+            if (newPath !== '/') {
+                headerHeight.value = '70px';
+            } else {
+                headerHeight.value = '230px';
+            }
         } else {
-            headerHeight.value = scrollY > 0 ? '70px' : '230px';
+            headerHeight.value = '230px';
         }
     }
 );
