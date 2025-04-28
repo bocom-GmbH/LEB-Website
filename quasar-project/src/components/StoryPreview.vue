@@ -43,7 +43,7 @@ const props = defineProps({
 
     @media (max-width: 599px) {
         padding: 8px;
-        font-size: 1rem
+        font-size: 1rem;
     }
 }
 </style>

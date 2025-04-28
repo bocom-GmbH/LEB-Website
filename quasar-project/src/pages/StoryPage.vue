@@ -9,7 +9,7 @@
         >
         </q-img>
         <div class="q-pa-md q-mx-auto content-container">
-            <div class="text-h3 text-center q-my-lg title">
+            <div class="text-h4 text-center q-my-lg title">
                 {{ storyFile?.label }}
             </div>
             <!-- <button @click="toggler = !toggler">Open the lightbox.</button>
@@ -29,7 +29,7 @@
                             !element.data.content.endsWith('.jpg') &&
                             !element.data.content.endsWith('.jpeg')
                         "
-                        class="text-h5 text-weight-regular text-center q-mb-xl"
+                        class="text-h6 text-weight-regular q-mb-xl story-text"
                     >
                         {{ element.data.content }}
                     </div>
@@ -163,8 +163,24 @@ watch(
     max-width: 800px;
 }
 
+.story-text {
+    text-align: center;
+    line-height: 1.6;
+
+    @media (max-width: 599px) {
+        text-align: left;
+        line-height: 1.8;
+    }
+}
+
 :deep(.story-content) {
     text-align: justify;
+    line-height: 1.6;
+
+    @media (max-width: 599px) {
+        text-align: left;
+        line-height: 1.8;
+    }
 
     h3 {
         font-size: 1.45rem;
@@ -177,6 +193,10 @@ watch(
         line-height: 1.6;
         margin: 1rem 0;
         position: relative;
+
+        @media (max-width: 599px) {
+            line-height: 1.8;
+        }
 
         &:first-of-type {
             &::before {
