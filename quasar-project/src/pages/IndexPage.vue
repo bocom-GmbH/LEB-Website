@@ -3,7 +3,7 @@
         <q-img
             v-if="homeFile"
             :src="`https://images.db-bocom.at/${homeFile?.data[0]?.data?.content}`"
-            alt=""
+            :alt="homeFile?.data[1]?.data?.text"
             style="max-height: 1273px"
         />
         <!-- {{ homeFile }} -->

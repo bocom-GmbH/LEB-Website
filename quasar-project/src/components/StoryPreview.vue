@@ -4,6 +4,7 @@
             :src="'https://images.db-bocom.at/' + item.image"
             fit="cover"
             class="story_container"
+            :alt="item.alt"
         >
             <div
                 class="name-container absolute-bottom no-letter-spacing text-h6 text-center bg-primary"

@@ -5,6 +5,7 @@
             :ratio="1"
             spinner-color="primary"
             spinner-size="82px"
+            :alt="file.alt"
         >
             <div
                 class="story-name absolute-bottom text-subtitle1 text-center bg-primary"
@@ -37,6 +38,7 @@ const props = defineProps<{
         image: string;
         type: string;
         parentId: string;
+        alt: string;
     };
 }>();
 

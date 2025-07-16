@@ -44,7 +44,7 @@ const props = defineProps<{
 .grid-item {
     transition: transform 0.2s ease;
 
-    &:hover {
+    &:hover, &:focus {
         transform: translateY(-4px);
     }
 }

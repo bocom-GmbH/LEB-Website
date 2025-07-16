@@ -11,6 +11,7 @@
                     "
                     fit="scale-down"
                     class="product-image"
+                    :alt="getContentById(ELEMENT_IDS.ALT)"
                 />
             </div>
             <q-card class="info-container q-pa-md bg-primary">
@@ -168,6 +169,7 @@ const ELEMENT_IDS = {
     MANUFACTURER: '75e01196-ca8c-4f07-948f-73f1b8573bb3',
     IMAGE: '56f5bbc4-8638-4231-a790-8aab57f81304',
     DESCRIPTION: '3917b97c-d37c-43fc-9a18-c11fa708a86d',
+    ALT: 'b0dfda7c-7ab7-46b4-9673-fe5404f49ac5'
 } as const;
 
 const getContentById = (elementId: string): string => {
@@ -177,7 +179,7 @@ const getContentById = (elementId: string): string => {
         (item) => item.elementId === elementId
     );
 
-    return element?.data.content || '';
+    return element?.data.content || element?.data.text || '';
 };
 
 // Computed property a data mappeléshez

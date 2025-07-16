@@ -180,7 +180,8 @@ const router = useRouter();
 const route = useRoute();
 const isSmallScreen = computed(() => $q.screen.lt.md);
 const isMobile = $q.platform.is.mobile;
-const headerHeight = ref(isSmallScreen.value ? '70px' : '230px');
+const isScrolled = ref(false);
+const headerHeight = ref(isScrolled.value ? '70px' : '230px');
 const directoryStore = useDirectoryStore();
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
@@ -196,11 +197,8 @@ function handleItemClick(item: { id: string }) {
     }
 }
 
-const isScrolled = ref(false);
-
 function handleScroll() {
     isScrolled.value = window.scrollY > 0;
-    console.log(isScrolled.value);
     if (route.path !== '/' && isSmallScreen.value) {
         headerHeight.value = '70px';
     } else {

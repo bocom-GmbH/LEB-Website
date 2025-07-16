@@ -6,12 +6,15 @@
                 ELEMENT_IDS.IMAGE
             )}`"
             class="full-width image"
+            :alt="getContentById(
+                ELEMENT_IDS.ALT
+            )"
         >
         </q-img>
         <div class="q-pa-md q-mx-auto content-container">
-            <div class="text-h4 text-center q-my-lg title">
+            <h1 class="text-h4 text-center q-my-lg title">
                 {{ storyFile?.label }}
-            </div>
+            </h1>
             <!-- <button @click="toggler = !toggler">Open the lightbox.</button>
             <FsLightbox :toggler="toggler" :sources="sources" /> -->
 
@@ -21,7 +24,7 @@
                     :key="element.elementId"
                     class="q-my-md"
                 >
-                    <div
+                    <h2
                         v-if="
                             element.data.content &&
                             !element.data.content.startsWith('<') &&
@@ -32,16 +35,16 @@
                         class="text-h6 text-weight-regular q-mb-xl story-text"
                     >
                         {{ element.data.content }}
-                    </div>
+                    </h2>
                     <!-- <q-img width="50px" :src="'leaf.svg'" /> -->
-                    <div
+                    <p
                         v-if="
                             element.data.content &&
                             element.data.content.startsWith('<')
                         "
                         class="text-body1 q-mb-xl story-content"
                         v-html="element.data.content"
-                    ></div>
+                    ></p>
                 </div>
             </template>
         </div>
@@ -93,6 +96,7 @@ const getDataOfFile = async (fileId: string) => {
 
 interface StoryData {
     content: string;
+    text: string;
 }
 interface StoryElement {
     data: StoryData;
@@ -101,6 +105,7 @@ interface StoryElement {
 
 const ELEMENT_IDS = {
     IMAGE: '56f5bbc4-8638-4231-a790-8aab57f81304',
+    ALT: 'ca02fea7-c29b-4389-ae0a-081622437298'
 };
 
 const getContentById = (elementId: string): string => {
@@ -110,7 +115,7 @@ const getContentById = (elementId: string): string => {
         (item) => item.elementId === elementId
     );
 
-    return element?.data.content || '';
+    return element?.data.content || element?.data.text || '';
 };
 
 /* const isImageContent = (content: string): boolean => {

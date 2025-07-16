@@ -16,7 +16,12 @@
             <div
                 v-for="(image, index) in images"
                 :key="index"
-                class="col-6 col-sm-4 col-md-3"
+                class="col-6 col-sm-4 col-md-3 image"
+                @click="openLightbox(image)"
+                @keydown.enter.prevent="openLightbox(image)"
+                @keydown.space.prevent="openLightbox(image)"
+                tabindex="0"
+                role="button"
             >
                 <!-- @click="openLightbox(index)" -->
                 <!-- class="cursor-pointer" -->
@@ -25,14 +30,27 @@
                     :ratio="1"
                     spinner-color="primary"
                     spinner-size="82px"
+                    class="cursor-pointer"
                 />
             </div>
         </div>
 
         <!-- Lightbox -->
-        <!--  <q-dialog v-model="lightboxOpen" full-width full-height>
-            <q-card class="lightbox-card">
-                <q-card-section class="row items-center q-pb-none">
+         <q-dialog v-model="lightboxOpen" full-width >
+             <q-card class="image-popup">
+                <q-img
+                    :src="`https://images.db-bocom.at/${currentImage}`"
+                    fit="contain"
+                />
+                <q-btn
+                    icon="close"
+                    flat
+                    round
+                    color="white"
+                    @click="lightboxOpen = false"
+                    class="absolute-top-right q-mr-md q-mt-md"
+                />
+                <!-- <q-card-section class="row items-center q-pb-none">
                     <div class="text-h6">{{ folderTitle }}</div>
                     <q-space />
                     <q-btn icon="close" flat round dense v-close-popup />
@@ -60,9 +78,9 @@
                             />
                         </q-carousel-slide>
                     </q-carousel>
-                </q-card-section>
+                </q-card-section> -->
             </q-card>
-        </q-dialog> -->
+        </q-dialog>
     </div>
 </template>
 
@@ -79,11 +97,11 @@ defineEmits<{
 }>();
 
 const lightboxOpen = ref(false);
-const currentSlide = ref(0);
+const currentImage = ref('');
 
-const openLightbox = (index: number) => {
-    /* currentSlide.value = index;
-    lightboxOpen.value = true; */
+const openLightbox = (image: string) => {
+    currentImage.value = image;
+    lightboxOpen.value = true;
 };
 </script>
 
@@ -91,5 +109,15 @@ const openLightbox = (index: number) => {
 .lightbox-card {
     background: rgba(0, 0, 0, 0.9);
     color: white;
+}
+
+.image:hover {
+    transform: translateY(-4px);
+}
+
+.image-popup {
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
 }
 </style>

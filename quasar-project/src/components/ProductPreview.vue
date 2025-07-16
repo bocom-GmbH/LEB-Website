@@ -5,6 +5,7 @@
             fit="scale-down"
             width="100%"
             height="300px"
+            :alt="item.alt"
         >
         </q-img>
 

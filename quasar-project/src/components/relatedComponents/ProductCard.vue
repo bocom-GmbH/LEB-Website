@@ -4,6 +4,10 @@
         flat
         v-if="file"
         @click="navigateTo(file)"
+        @keydown.enter.prevent="navigateTo(file)"
+        @keydown.space.prevent="navigateTo(file)"
+        tabindex="0"
+        role="button"
     >
         <q-img
             :src="`https://images.db-bocom.at/${file.image}`"
@@ -11,6 +15,7 @@
             spinner-color="primary"
             spinner-size="82px"
             fit="scale-down"
+            :alt="file.alt"
         >
             <div
                 class="product-name absolute-bottom text-subtitle1 text-center bg-primary"
@@ -32,6 +37,7 @@ const props = defineProps<{
         name: string;
         image: string;
         type: string;
+        alt: string;
     };
 }>();
 

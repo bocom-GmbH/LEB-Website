@@ -24,6 +24,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                     amount
                     url
                     linkFileId
+                    alt
                 }
             }
             nested {
@@ -44,6 +45,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                     amount
                     url
                     linkFileId
+                    alt
                     children {
                         id
                         fileId
@@ -60,6 +62,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                         amount
                         url
                         linkFileId
+                        alt
                         children {
                             id
                             fileId
@@ -76,6 +79,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                             amount
                             url
                             linkFileId
+                            alt
                             children {
                                 id
                                 fileId
@@ -92,6 +96,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                                 amount
                                 url
                                 linkFileId
+                                alt
                                 children {
                                     id
                                     fileId
@@ -108,6 +113,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                                     amount
                                     url
                                     linkFileId
+                                    alt
                                     children {
                                         id
                                         fileId
@@ -124,6 +130,7 @@ const getDirectoryFolderToLoggedInClient = gql`
                                         amount
                                         url
                                         linkFileId
+                                        alt
                                     }
                                 }
                             }

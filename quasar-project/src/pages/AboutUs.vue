@@ -25,6 +25,7 @@
                                 width="200px"
                                 spinner-color="primary"
                                 spinner-size="82px"
+                                :alt="member.alt"
                             />
                         </div>
 
