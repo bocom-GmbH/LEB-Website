@@ -1,0 +1,18 @@
+services:
+    # Production service
+    leb-website-prod:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: production
+        container_name: leb-website-prod
+        ports:
+            - '3000:3000'
+        environment:
+            - NODE_ENV=production
+        networks:
+            - leb-network
+
+networks:
+    leb-network:
+        driver: bridge
