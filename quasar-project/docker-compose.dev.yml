@@ -1,0 +1,26 @@
+services:
+    # Development service
+    leb-website-dev:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: development
+        container_name: leb-website-dev
+        ports:
+            - '9000:9000'
+        volumes:
+            - .:/app
+            - /app/node_modules
+        environment:
+            - NODE_ENV=development
+            - HOST=0.0.0.0
+            - PORT=9000
+        networks:
+            - leb-network
+
+networks:
+    leb-network:
+        driver: bridge
+
+volumes:
+    node_modules:
