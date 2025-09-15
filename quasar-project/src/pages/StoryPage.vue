@@ -2,7 +2,7 @@
     <div class="story-container">
         <q-img
             v-if="storyFile"
-            :src="import.meta.env.VITE_IMAGE_URL + getContentById(
+            :src="url + getContentById(
                 ELEMENT_IDS.IMAGE
             )"
             class="full-width image"
@@ -77,6 +77,7 @@ const sources = ref([
     'https://www.youtube.com/watch?v=3nQNiWdeH2Q',
     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
 ]);
+const url = import.meta.env.VITE_IMAGE_URL;
 
 const storyId = computed(() => route.params.storyId as string);
 const directoryId = computed(() => route.params.directoryId as string);

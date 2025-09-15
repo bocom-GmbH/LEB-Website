@@ -6,7 +6,7 @@
             >
                 <q-img
                     :src="
-                        import.meta.env.VITE_IMAGE_URL +
+                        url +
                         getContentById(ELEMENT_IDS.IMAGE)
                     "
                     fit="scale-down"
@@ -117,6 +117,7 @@ const productDirectoryItem = computed(() =>
 const productFile = ref(null);
 
 const isLoading = ref(true);
+const url = ref(import.meta.env.VITE_IMAGE_URL);
 
 const getDataOfFile = async (fileId: string) => {
     isLoading.value = true;

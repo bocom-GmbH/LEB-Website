@@ -2,7 +2,7 @@
     <q-page class="">
         <q-img
             v-if="homeFile"
-            :src="import.meta.env.VITE_IMAGE_URL + homeFile?.data[0]?.data?.content"
+            :src="url + homeFile?.data[0]?.data?.content"
             :alt="homeFile?.data[1]?.data?.text"
             style="max-height: 1273px"
         />
@@ -56,7 +56,7 @@ const directoryStore = useDirectoryStore();
 const fileStore = useFileStore();
 const componentStore = useComponentStore();
 const homeFile = ref();
-
+const url = ref(import.meta.env.VITE_IMAGE_URL);
 onMounted(async () => {
     if (directoryStore.getDirectoryNested?.directory) {
         const file =

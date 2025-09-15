@@ -20,7 +20,7 @@
                     <div class="row no-wrap">
                         <div class="col-auto">
                             <q-img
-                                :src="import.meta.env.VITE_IMAGE_URL + member.image"
+                                :src="url + member.image"
                                 :ratio="1"
                                 width="200px"
                                 spinner-color="primary"
@@ -64,7 +64,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const fileStore = useFileStore();
 const aboutUsFile = ref<any>(null);
-
+const url = import.meta.env.VITE_IMAGE_URL;
 onMounted(async () => {
     aboutUsFile.value = await fileStore.getFileById(
         router.currentRoute.value.path.split('/')[2]

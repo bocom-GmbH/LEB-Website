@@ -26,7 +26,7 @@
                 <!-- @click="openLightbox(index)" -->
                 <!-- class="cursor-pointer" -->
                 <q-img
-                    :src="import.meta.env.VITE_IMAGE_URL + image"
+                    :src="url + image"
                     :ratio="1"
                     spinner-color="primary"
                     spinner-size="82px"
@@ -39,7 +39,7 @@
          <q-dialog v-model="lightboxOpen" full-width >
              <q-card class="image-popup">
                 <q-img
-                    :src="import.meta.env.VITE_IMAGE_URL + currentImage"
+                    :src="url + currentImage"
                     fit="contain"
                 />
                 <q-btn
@@ -72,7 +72,7 @@
                             class="column no-wrap flex-center"
                         >
                             <q-img
-                                :src="import.meta.env.VITE_IMAGE_URL + image"
+                                :src="url + image"
                                 fit="contain"
                                 style="max-height: 70vh; width: auto"
                             />
@@ -98,6 +98,7 @@ defineEmits<{
 
 const lightboxOpen = ref(false);
 const currentImage = ref('');
+const url = import.meta.env.VITE_IMAGE_URL;
 
 const openLightbox = (image: string) => {
     currentImage.value = image;

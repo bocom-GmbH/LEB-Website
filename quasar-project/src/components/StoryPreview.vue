@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card cursor-pointer" flat>
         <q-img
-            :src="import.meta.env.VITE_IMAGE_URL + item.image"
+            :src="url + item.image"
             fit="cover"
             class="story_container"
             :alt="item.alt"
@@ -22,6 +22,8 @@ const props = defineProps({
         required: true,
     },
 });
+
+const url = import.meta.env.VITE_IMAGE_URL;
 </script>
 
 <style lang="scss" scoped>
