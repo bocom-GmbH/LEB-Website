@@ -1,7 +1,7 @@
 <template>
     <q-card class="grid-item cursor-pointer" flat @click="navigateTo(file)">
         <q-img
-            :src="`https://images.db-bocom.at/${file.image}`"
+            :src="import.meta.env.VITE_IMAGE_URL + file.image"
             :ratio="1"
             spinner-color="primary"
             spinner-size="82px"

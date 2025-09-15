@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card cursor-pointer" flat>
         <q-img
-            :src="'https://images.db-bocom.at/' + item.image"
+            :src="import.meta.env.VITE_IMAGE_URL + item.image"
             fit="scale-down"
             width="100%"
             height="300px"

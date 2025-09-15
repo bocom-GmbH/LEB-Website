@@ -2,9 +2,9 @@
     <div class="story-container">
         <q-img
             v-if="storyFile"
-            :src="`https://images.db-bocom.at/${getContentById(
+            :src="import.meta.env.VITE_IMAGE_URL + getContentById(
                 ELEMENT_IDS.IMAGE
-            )}`"
+            )"
             class="full-width image"
             :alt="getContentById(
                 ELEMENT_IDS.ALT
@@ -65,7 +65,6 @@ import { useFileStore } from '../stores/file-store';
 import { computed, watch, ref } from 'vue';
 import GridComponent from 'components/GridComponent.vue';
 //@ts-ignore
-import FsLightbox from 'fslightbox-vue/v3';
 
 const route = useRoute();
 const store = useDirectoryStore();

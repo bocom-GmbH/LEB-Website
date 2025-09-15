@@ -6,7 +6,7 @@
             >
                 <q-img
                     :src="
-                        'https://images.db-bocom.at/' +
+                        import.meta.env.VITE_IMAGE_URL +
                         getContentById(ELEMENT_IDS.IMAGE)
                     "
                     fit="scale-down"

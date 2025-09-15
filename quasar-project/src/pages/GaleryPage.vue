@@ -18,9 +18,7 @@
                         @click="openFolder(index)"
                     >
                         <q-img
-                            :src="`https://images.db-bocom.at/${
-                                folder.title_image || folder.titel_image
-                            }`"
+                            :src="import.meta.env.VITE_IMAGE_URL + (folder.title_image || folder.titel_image)"
                             spinner-color="primary"
                             spinner-size="82px"
                             height="280px"

@@ -20,7 +20,7 @@
                     <div class="row no-wrap">
                         <div class="col-auto">
                             <q-img
-                                :src="`https://images.db-bocom.at/${member.image}`"
+                                :src="import.meta.env.VITE_IMAGE_URL + member.image"
                                 :ratio="1"
                                 width="200px"
                                 spinner-color="primary"
