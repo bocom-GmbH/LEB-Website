@@ -10,7 +10,8 @@ export /* async */ function getClientOptions(
   /* {app, router, ...} */ options?: Partial<BootFileParams<any>>
 ) {
   const httpLink = createHttpLink({
-    uri: 'https://graphql.db-bocom.at/',
+    // uri: 'https://graphql.db-bocom.at/',
+    uri: 'https://backend.levelling.app/',
 });
 // const authLink = setContext((_, { headers }) => {
 //     return {
