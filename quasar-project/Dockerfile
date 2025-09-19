@@ -20,6 +20,11 @@ CMD ["yarn", "dev"]
 
 # Build stage
 FROM base AS build
+# Set environment variables for build time
+ARG VITE_GRAPHQL_URL
+ARG VITE_IMAGE_URL
+ENV VITE_GRAPHQL_URL=$VITE_GRAPHQL_URL
+ENV VITE_IMAGE_URL=$VITE_IMAGE_URL
 RUN yarn build
 
 # Production stage

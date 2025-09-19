@@ -1,6 +1,6 @@
 <template>
     <q-page class="">
-        {{ url }} halloi
+        asd {{ url }} halloi
         <q-img
             v-if="homeFile"
             :src="url + homeFile?.data[0]?.data?.content"
@@ -86,7 +86,7 @@ defineOptions({
 <style scoped>
 .grid-container {
     margin-bottom: 200px;
-    margin-top: 50px
+    margin-top: 50px;
 }
 
 @media (max-width: 599px) {
