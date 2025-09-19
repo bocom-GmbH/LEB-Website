@@ -10,8 +10,6 @@ services:
             - '3000:3000'
         environment:
             - NODE_ENV=production
-            - VITE_GRAPHQL_URL=${GRAPHQL_URL:-https://graphql.db-bocom.at/}
-            - VITE_IMAGE_URL=${VITE_IMAGE_URL:-https://filer.levelling.app/images/}
         networks:
             - leb-network
 

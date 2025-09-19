@@ -21,8 +21,8 @@ CMD ["yarn", "dev"]
 # Build stage
 FROM base AS build
 # Copy environment variables from runtime to build time
-#ENV VITE_GRAPHQL_URL=${VITE_GRAPHQL_URL:-https://graphql.db-bocom.at/}
-#ENV VITE_IMAGE_URL=${VITE_IMAGE_URL:-https://filer.levelling.app/images/}
+ENV VITE_GRAPHQL_URL=${VITE_GRAPHQL_URL:-https://graphql.db-bocom.at/}
+ENV VITE_IMAGE_URL=${VITE_IMAGE_URL:-https://filer.levelling.app/images/}
 RUN yarn build
 
 # Production stage
