@@ -1,7 +1,7 @@
 <template>
     <q-card class="grid-item cursor-pointer" flat @click="navigateTo(file)">
         <q-img
-            :src="`https://images.db-bocom.at/${file.image}`"
+            :src="url + file.image"
             :ratio="1"
             spinner-color="primary"
             spinner-size="82px"
@@ -41,6 +41,8 @@ const props = defineProps<{
         alt: string;
     };
 }>();
+
+const url = import.meta.env.VITE_IMAGE_URL;
 
 const navigateTo = (item: any) => {
     const directoryId = item.parentId;

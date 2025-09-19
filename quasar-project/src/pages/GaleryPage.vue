@@ -18,9 +18,7 @@
                         @click="openFolder(index)"
                     >
                         <q-img
-                            :src="`https://images.db-bocom.at/${
-                                folder.title_image || folder.titel_image
-                            }`"
+                            :src="url + (folder.title_image || folder.titel_image)"
                             spinner-color="primary"
                             spinner-size="82px"
                             height="280px"
@@ -64,6 +62,7 @@ const route = useRoute();
 const fileStore = useFileStore();
 const galeryFile = ref<any>(null);
 const selectedFolder = ref<any>(null);
+const url = import.meta.env.VITE_IMAGE_URL;
 
 const fileId = computed(() => route.params.fileId as string);
 

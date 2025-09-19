@@ -10,7 +10,7 @@
         role="button"
     >
         <q-img
-            :src="`https://images.db-bocom.at/${file.image}`"
+            :src="url + file.image"
             :ratio="1"
             spinner-color="primary"
             spinner-size="82px"
@@ -30,6 +30,7 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const url = import.meta.env.VITE_IMAGE_URL;
 
 const props = defineProps<{
     file: {

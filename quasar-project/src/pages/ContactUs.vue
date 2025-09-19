@@ -187,6 +187,7 @@ const $q = useQuasar();
 const { mutate: sendRequest, loading: isSending } = useMutation(request);
 
 const onSubmit = async () => {
+    console.log(formData.value);
     try {
         const response = await sendRequest({
             request: formData.value.message,
