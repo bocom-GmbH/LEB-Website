@@ -1,0 +1,34 @@
+# Production Dockerfile for Quasar
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Use runtime environment variables for build time
+# These will be available during build because they're set in docker-compose
+ENV VITE_GRAPHQL_URL=${VITE_GRAPHQL_URL:-https://graphql.db-bocom.at/}
+ENV VITE_IMAGE_URL=${VITE_IMAGE_URL:-https://filer.levelling.app/images/}
+
+# Build the application with environment variables
+RUN yarn build
+
+# Install serve for static file serving
+RUN npm install -g serve
+
+# Copy built files
+RUN cp -r dist/spa/* dist/
+
+# Clean up
+RUN rm -rf src/ node_modules/ package.json yarn.lock
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "dist", "-l", "3000"]

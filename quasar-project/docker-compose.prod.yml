@@ -3,13 +3,14 @@ services:
     leb-website-prod:
         build:
             context: .
-            dockerfile: Dockerfile
-            target: production
+            dockerfile: Dockerfile.prod
         container_name: leb-website-prod
         ports:
             - '3000:3000'
         environment:
             - NODE_ENV=production
+            - VITE_GRAPHQL_URL=${VITE_GRAPHQL_URL}
+            - VITE_IMAGE_URL=${VITE_IMAGE_URL}
         networks:
             - leb-network
 

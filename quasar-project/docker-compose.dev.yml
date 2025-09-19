@@ -3,8 +3,7 @@ services:
     leb-website-dev:
         build:
             context: .
-            dockerfile: Dockerfile
-            target: development
+            dockerfile: Dockerfile.dev
         container_name: leb-website-dev
         ports:
             - '9000:9000'
