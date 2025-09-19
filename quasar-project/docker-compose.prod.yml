@@ -5,14 +5,13 @@ services:
             context: .
             dockerfile: Dockerfile
             target: production
-            args:
-                - VITE_GRAPHQL_URL=${GRAPHQL_URL:-https://graphql.db-bocom.at/}
-                - VITE_IMAGE_URL=https://filer.levelling.app/images/
         container_name: leb-website-prod
         ports:
             - '3000:3000'
         environment:
             - NODE_ENV=production
+            - VITE_GRAPHQL_URL=${GRAPHQL_URL:-https://graphql.db-bocom.at/}
+            - VITE_IMAGE_URL=${VITE_IMAGE_URL:-https://filer.levelling.app/images/}
         networks:
             - leb-network
 
