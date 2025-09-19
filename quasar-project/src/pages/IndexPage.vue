@@ -1,6 +1,5 @@
 <template>
     <q-page class="">
-        asd {{ url }} halloi
         <q-img
             v-if="homeFile"
             :src="url + homeFile?.data[0]?.data?.content"
